@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maraverse Games — Worlds worth collecting</title>
+  <meta name="description" data-i18n="studio.meta"
+    content="Maraverse Games is an indie studio crafting collection and adventure games across real and imagined worlds — starting with The Wildlife Collection." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Maraverse Games" />
+  <meta property="og:description" content="An indie studio crafting collection and adventure games across real and imagined worlds." />
+  <meta property="og:image" content="assets/brand/app-icon.webp" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/brand/favicon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Maraverse Games">
+      <img src="assets/brand/app-icon.webp" alt="" class="brand-icon" width="40" height="40" />
+      <span class="brand-name">Maraverse Games</span>
+    </a>
+    <nav class="nav">
+      <a href="#games" data-i18n="studio.nav.games">Games</a>
+      <a href="#about" data-i18n="studio.nav.about">Studio</a>
+      <a href="mailto:admin.mara.games@gmail.com" data-i18n="foot.contact">Contact</a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-set-lang="en" class="is-active">EN</button>
+        <button type="button" data-set-lang="es">ES</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- ===== Hero ===== -->
+    <section class="hero studio-hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <span class="eyebrow" data-i18n="studio.eyebrow">Indie game studio</span>
+        <h1 class="hero-title" data-i18n="studio.title">Worlds worth<br />collecting.</h1>
+        <p class="hero-sub" data-i18n="studio.sub">
+          We're <strong>Maraverse Games</strong> — a small studio crafting collection and adventure
+          games across real and imagined worlds. Our first journey: wildlife. Next stops: the cosmos,
+          the age of dinosaurs, and a fantasy realm of our own.
+        </p>
+        <div class="cta-row">
+          <a class="store-btn solid" href="the-wildlife-collection.html">
+            <img src="assets/brand/app-icon.webp" alt="" width="26" height="26" style="border-radius:7px" />
+            <span class="store-btn-text">
+              <small data-i18n="studio.cta.small">OUR FIRST GAME</small>
+              <strong>The Wildlife Collection</strong>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-mark" aria-hidden="true">
+        <img src="assets/brand/app-icon.webp" alt="" class="hero-icon" width="240" height="240" />
+      </div>
+    </section>
+
+    <!-- ===== Species marquee ===== -->
+    <section class="marquee" aria-hidden="true">
+      <div class="marquee-track"></div>
+    </section>
+
+    <!-- ===== Games ===== -->
+    <section class="section" id="games">
+      <h2 class="section-title" data-i18n="studio.games.title">Our games</h2>
+      <p class="section-lead" data-i18n="studio.games.lead">One world out now-ish, and more already taking shape.</p>
+      <div class="games-grid">
+        <!-- Featured: live game -->
+        <a class="game-card featured" href="the-wildlife-collection.html">
+          <div class="game-cover">
+            <img data-shot="home" src="assets/screens/home-en.webp" alt="The Wildlife Collection" loading="lazy" />
+          </div>
+          <div class="game-info">
+            <span class="game-status live" data-i18n="studio.status.soon">Coming soon · Android</span>
+            <h3>The Wildlife Collection</h3>
+            <p data-i18n="studio.game.wildlife">Discover 2,400+ real animal species, open packs and complete collections — built on genuine IUCN conservation data.</p>
+            <span class="game-link" data-i18n="studio.game.view">View game →</span>
+          </div>
+        </a>
+
+        <!-- Upcoming teasers -->
+        <div class="game-card soon">
+          <div class="game-cover ph cosmos">🪐</div>
+          <div class="game-info">
+            <span class="game-status" data-i18n="studio.status.dev">In the works</span>
+            <h3 data-i18n="studio.game.cosmos.t">The Cosmos Collection</h3>
+            <p data-i18n="studio.game.cosmos.d">Collect the night sky — planets, moons, and deep-space wonders.</p>
+          </div>
+        </div>
+        <div class="game-card soon">
+          <div class="game-cover ph dino">🦕</div>
+          <div class="game-info">
+            <span class="game-status" data-i18n="studio.status.dev">In the works</span>
+            <h3 data-i18n="studio.game.dino.t">The Dinosaur Collection</h3>
+            <p data-i18n="studio.game.dino.d">Bring the age of dinosaurs back to your album, one card at a time.</p>
+          </div>
+        </div>
+        <div class="game-card soon">
+          <div class="game-cover ph fantasy">✨</div>
+          <div class="game-info">
+            <span class="game-status" data-i18n="studio.status.dev">In the works</span>
+            <h3 data-i18n="studio.game.fantasy.t">A Fantasy World</h3>
+            <p data-i18n="studio.game.fantasy.d">An original realm of our own — collection meets adventure.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section class="section about" id="about">
+      <div class="about-inner">
+        <div class="about-copy">
+          <span class="eyebrow" data-i18n="studio.about.eyebrow">About the studio</span>
+          <h2 class="section-title left" data-i18n="studio.about.title">Small studio, big worlds</h2>
+          <p data-i18n="studio.about.p1">Maraverse Games is an independent studio that builds beautiful, respectful games about the things worth knowing — real wildlife, the night sky, the deep past, and worlds we dream up ourselves.</p>
+          <p data-i18n="studio.about.p2">We care about craft: genuine data, hand-tuned art, and a daily loop that feels good to come back to. No dark patterns, no clutter — just the quiet joy of filling a collection.</p>
+          <p class="about-mara" data-i18n="studio.about.p3">🐾 The name carries a little piece of home: <strong>Mara</strong>, our dog — and the mark you'll find on everything we make.</p>
+        </div>
+        <ul class="about-values">
+          <li><span>🌍</span><div><b data-i18n="studio.value.real.t">Rooted in reality</b><span data-i18n="studio.value.real.d">Real species, real science, real wonder.</span></div></li>
+          <li><span>🎨</span><div><b data-i18n="studio.value.craft.t">Made with craft</b><span data-i18n="studio.value.craft.d">Considered art and design in every screen.</span></div></li>
+          <li><span>🤝</span><div><b data-i18n="studio.value.fair.t">Player-first</b><span data-i18n="studio.value.fair.d">Fair, calm games — no dark patterns.</span></div></li>
+          <li><span>🗣️</span><div><b data-i18n="studio.value.lang.t">Made to travel</b><span data-i18n="studio.value.lang.d">Bilingual from day one (EN · ES).</span></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Final CTA ===== -->
+    <section class="final-cta">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <h2 data-i18n="studio.final.title">Start with the wild</h2>
+      <p data-i18n="studio.final.sub">Our first game is almost here. Take a look while the next worlds take shape.</p>
+      <div class="cta-row center">
+        <a class="store-btn solid" href="the-wildlife-collection.html">
+          <img src="assets/brand/app-icon.webp" alt="" width="26" height="26" style="border-radius:7px" />
+          <span class="store-btn-text">
+            <small data-i18n="studio.cta.small">OUR FIRST GAME</small>
+            <strong>The Wildlife Collection</strong>
+          </span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="foot-brand">
+      <a class="foot-wordmark" href="#top">
+        <img src="assets/brand/app-icon.webp" alt="" width="34" height="34" />
+        <span>Maraverse Games</span>
+      </a>
+      <p data-i18n="foot.tag">An indie game studio. Worlds worth collecting.</p>
+    </div>
+    <nav class="foot-links">
+      <a href="#games" data-i18n="studio.nav.games">Games</a>
+      <a href="#about" data-i18n="studio.nav.about">Studio</a>
+      <a href="privacy.html" data-i18n="foot.privacy">Privacy</a>
+      <a href="mailto:admin.mara.games@gmail.com" data-i18n="foot.contact">Contact</a>
+    </nav>
+    <p class="copyright">© <span id="year">2026</span> Maraverse Games</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

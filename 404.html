@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Maraverse Games</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/brand/favicon-192.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .nf { min-height: 80vh; display: grid; place-items: center; text-align: center; padding: 3rem 1.25rem; position: relative; }
+    .nf-code { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: clamp(4rem, 18vw, 9rem); line-height: 1; color: var(--gold-2); }
+    .nf-icon { width: 84px; height: 84px; border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 1.5rem; }
+    .nf h1 { font-family: 'Poppins', sans-serif; font-size: clamp(1.4rem, 4vw, 2rem); margin: 0.5rem 0; }
+    .nf p { color: var(--muted); max-width: 420px; margin: 0 auto 1.8rem; }
+  </style>
+</head>
+<body>
+  <main class="nf">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div>
+      <img src="assets/brand/app-icon.webp" alt="" class="nf-icon" width="84" height="84" />
+      <div class="nf-code">404</div>
+      <h1 data-i18n="err.title">This trail leads nowhere</h1>
+      <p data-i18n="err.sub">The page you're looking for wandered off into the wild.</p>
+      <a class="store-btn solid" href="index.html" style="display:inline-flex">
+        <img src="assets/brand/app-icon.webp" alt="" width="24" height="24" style="border-radius:6px" />
+        <span class="store-btn-text">
+          <small data-i18n="err.back">BACK TO</small>
+          <strong>Maraverse Games</strong>
+        </span>
+      </a>
+    </div>
+  </main>
+  <script src="main.js"></script>
+</body>
+</html>
