@@ -261,6 +261,10 @@ strong { color: #fff; font-weight: 600; }
 .game-card.featured .game-cover { flex: 0 0 38%; max-width: 320px; }
 .game-card.featured .game-cover img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
 .game-cover.ph { aspect-ratio: 16 / 10; display: grid; place-items: center; font-size: 2.6rem; font-weight: 800; color: rgba(148,163,184,0.55); }
+/* Coming-soon teaser cover: real art, dimmed to keep the mystery */
+.game-cover.teaser { aspect-ratio: 16 / 10; overflow: hidden; }
+.game-cover.teaser img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.64) saturate(0.92); transition: filter 0.3s; }
+.game-card.soon:hover .game-cover.teaser img { filter: brightness(0.78) saturate(1); }
 .game-cover.ph.p1 { background: radial-gradient(circle at 50% 40%, #1e293b, #0b1322); }
 .game-cover.ph.p2 { background: radial-gradient(circle at 50% 40%, #20283f, #0b1322); }
 .game-cover.ph.p3 { background: radial-gradient(circle at 50% 40%, #241f38, #0b1322); }
@@ -274,8 +278,8 @@ strong { color: #fff; font-weight: 600; }
 }
 .game-status.live { color: #1a1205; background: var(--gold-2); border-color: transparent; }
 .game-link { color: var(--gold-2); font-weight: 600; font-size: 0.95rem; margin-top: 0.3rem; }
-.game-card.soon { opacity: 0.72; }
-.game-card.soon .game-info h3 { color: #cbd5e1; }
+.game-card.soon { opacity: 1; }
+.game-card.soon .game-info h3 { color: #e2e8f0; }
 @media (max-width: 760px) {
   .games-grid { grid-template-columns: 1fr 1fr; }
   .game-card.featured { flex-direction: column; }
