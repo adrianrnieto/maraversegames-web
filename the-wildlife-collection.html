@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Wildlife Collection — Collect the wild, one pack at a time</title>
   <meta name="description" data-i18n="meta.description"
-    content="A mobile card-collecting game. Discover 2,400+ real animal species, open packs, complete collections — all built on genuine IUCN conservation data." />
+    content="A free, fully offline mobile card-collecting game. Discover 2,400+ real, hand-reviewed animal species, open packs, complete collections — built on real conservation data from the IUCN Red List." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="The Wildlife Collection" />
-  <meta property="og:description" content="Discover 2,400+ real animal species, open packs, and complete collections — built on genuine IUCN conservation data." />
+  <meta property="og:description" content="A free, fully offline game. Discover 2,400+ real animal species and complete collections — built on real conservation data." />
   <meta property="og:image" content="assets/brand/app-icon.webp" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png" />
@@ -30,7 +30,7 @@
     <nav class="nav">
       <a href="index.html" class="nav-studio" data-i18n="nav.studio">← Maraverse Games</a>
       <a href="#features" data-i18n="nav.features">Features</a>
-      <a href="#screens" data-i18n="nav.screens">Screens</a>
+      <a href="#learn" data-i18n="nav.learn">Learn</a>
       <a href="#conservation" data-i18n="nav.conservation">Conservation</a>
       <div class="lang-toggle" role="group" aria-label="Language">
         <button type="button" data-set-lang="en" class="is-active">EN</button>
@@ -47,11 +47,12 @@
         <span class="eyebrow" data-i18n="hero.eyebrow">A wildlife card-collecting game</span>
         <h1 class="hero-title" data-i18n="hero.title">Collect the wild,<br />one pack at a time.</h1>
         <p class="hero-sub" data-i18n="hero.sub">
-          Discover <strong>2,400+ real animal species</strong>, open packs, trade duplicates up, and
-          complete themed collections — every card built on genuine IUCN conservation data.
+          Discover <strong>2,400+ real animal species</strong>, open packs and complete themed
+          collections. <strong>Completely free</strong>, and fully <strong>playable offline</strong>
+          — even in airplane mode.
         </p>
         <div class="cta-row">
-          <a class="store-btn" id="play-cta" href="#" aria-disabled="true">
+          <a class="store-btn" id="play-cta" data-play href="#" aria-disabled="true">
             <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
               <path d="M3.6 2.3 13.5 12 3.6 21.7c-.4-.2-.7-.7-.7-1.3V3.6c0-.6.3-1.1.7-1.3Z" fill="#34d399"/>
               <path d="m16.4 8.9 3 1.7c1 .6 1 2.2 0 2.8l-3 1.7L13.5 12l2.9-3.1Z" fill="#fbbf24"/>
@@ -66,9 +67,9 @@
           <span class="cta-note" id="cta-note" data-i18n="cta.soon">🚀 Launching soon — Android first</span>
         </div>
         <ul class="hero-badges">
-          <li><span>🐾</span> <span data-i18n="hero.badge.real">Real species</span></li>
-          <li><span>🌍</span> <span data-i18n="hero.badge.offline">Plays offline</span></li>
-          <li><span>🆓</span> <span data-i18n="hero.badge.free">Free to play</span></li>
+          <li><span>🆓</span> <span data-i18n="hero.badge.free">100% free</span></li>
+          <li><span>✈️</span> <span data-i18n="hero.badge.offline">Plays fully offline</span></li>
+          <li><span>🐾</span> <span data-i18n="hero.badge.real">2,400+ real species</span></li>
           <li><span>🗣️</span> <span data-i18n="hero.badge.lang">English &amp; Español</span></li>
         </ul>
       </div>
@@ -83,17 +84,33 @@
 
     <!-- ===== Species marquee ===== -->
     <section class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <!-- duplicated in JS for a seamless loop -->
-      </div>
+      <div class="marquee-track"><!-- built by main.js --></div>
     </section>
 
     <!-- ===== Stats ===== -->
     <section class="stats">
       <div class="stat"><b>2,400+</b><span data-i18n="stat.species">real species</span></div>
       <div class="stat"><b>20+</b><span data-i18n="stat.collections">themed collections</span></div>
-      <div class="stat"><b>IUCN</b><span data-i18n="stat.iucn">real conservation data</span></div>
+      <div class="stat"><b data-i18n="stat.free.v">Free</b><span data-i18n="stat.free">&amp; fully offline</span></div>
       <div class="stat"><b>EN · ES</b><span data-i18n="stat.lang">fully bilingual</span></div>
+    </section>
+
+    <!-- ===== Free & offline band ===== -->
+    <section class="band">
+      <div class="band-item">
+        <span>🆓</span>
+        <div>
+          <b data-i18n="band.free.t">Free to play</b>
+          <p data-i18n="band.free.d">No paywall to start, no account required. Just download and begin your collection.</p>
+        </div>
+      </div>
+      <div class="band-item">
+        <span>✈️</span>
+        <div>
+          <b data-i18n="band.offline.t">Works without internet</b>
+          <p data-i18n="band.offline.d">Once installed, the whole game runs on your device — play on a flight, on the metro, anywhere. No connection needed.</p>
+        </div>
+      </div>
     </section>
 
     <!-- ===== Features ===== -->
@@ -123,13 +140,42 @@
         </article>
         <article class="feature">
           <div class="feature-ico">✨</div>
-          <h3 data-i18n="feat.foils.t">Foils &amp; variants</h3>
-          <p data-i18n="feat.foils.d">Chase Silver, Gold and Rainbow foils, plus rare alternate artwork like the Black Panther morph of the Jaguar.</p>
+          <h3 data-i18n="feat.foils.t">Shiny cards &amp; variants</h3>
+          <p data-i18n="feat.foils.d">Chase Silver, Gold and Rainbow shiny cards, plus rare alternate artwork like the Black Panther morph of the Jaguar.</p>
         </article>
         <article class="feature">
           <div class="feature-ico">🌿</div>
           <h3 data-i18n="feat.iucn.t">Real conservation data</h3>
-          <p data-i18n="feat.iucn.d">Every species carries its genuine IUCN Red List status, which drives its rarity and in-game value.</p>
+          <p data-i18n="feat.iucn.d">Each species carries its real status on the IUCN Red List — the International Union for Conservation of Nature — which drives its rarity and in-game value.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Learn / educational ===== -->
+    <section class="section edu" id="learn">
+      <span class="eyebrow center" data-i18n="edu.eyebrow">More than a game</span>
+      <h2 class="section-title" data-i18n="edu.title">A game that teaches while you play</h2>
+      <p class="section-lead" data-i18n="edu.lead">The sticker albums many of us grew up with — reimagined, and quietly educational for every age.</p>
+      <div class="feature-grid edu-grid">
+        <article class="feature">
+          <div class="feature-ico">👨‍👩‍👧</div>
+          <h3 data-i18n="edu.all.t">For every age</h3>
+          <p data-i18n="edu.all.d">Parents, kids and the simply curious. It grew out of the animal sticker albums of childhood — that same joy of completing a collection, now in your pocket.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-ico">🔭</div>
+          <h3 data-i18n="edu.discover.t">Meet the unknown</h3>
+          <p data-i18n="edu.discover.d">Most of these species you'll have never heard of. Even lifelong animal lovers discover dozens of new ones — it's a window onto a natural world we rarely get to see.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-ico">📚</div>
+          <h3 data-i18n="edu.scale.t">One of the largest catalogues anywhere</h3>
+          <p data-i18n="edu.scale.d">Over 2,400 species — a genuinely huge database, far beyond what most collection games offer, each with its own facts to learn.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-ico">🎨</div>
+          <h3 data-i18n="edu.real.t">Realistic, hand-reviewed art</h3>
+          <p data-i18n="edu.real.d">Every single image is reviewed for the highest possible realism, so each animal looks like the real thing — not a cartoon.</p>
         </article>
       </div>
     </section>
@@ -152,17 +198,18 @@
     <section class="section conservation" id="conservation">
       <div class="cons-inner">
         <div class="cons-copy">
-          <span class="eyebrow" data-i18n="cons.eyebrow">Built on real data</span>
-          <h2 class="section-title left" data-i18n="cons.title">Every card tells a real story</h2>
-          <p data-i18n="cons.p1">Rarity here isn't made up. Each species carries its real <strong>IUCN Red List status</strong> — from Least Concern to Critically Endangered, Extinct in the Wild, and Extinct — and that status decides how rare the card is and what it's worth.</p>
-          <p data-i18n="cons.p2">Collect a Critically Endangered card and you're holding a species that's genuinely vanishing from our planet. It's a game that quietly teaches you the natural world while you play.</p>
+          <span class="eyebrow" data-i18n="cons.eyebrow">Built on real conservation data</span>
+          <h2 class="section-title left" data-i18n="cons.title">Every status tells a real story</h2>
+          <p data-i18n="cons.p1">Rarity here isn't invented. Each species carries its real status on the <strong>IUCN Red List</strong> — the International Union for Conservation of Nature — from Least Concern to Critically Endangered, Extinct in the Wild, and Extinct. That status is exactly what decides how rare each card is.</p>
+          <p data-i18n="cons.p2">And every level matters. "Least Concern" still means watched; "Near Threatened" and "Vulnerable" species are already slipping away; and far too many are endangered or already gone — most of it driven by human activity and habitat loss. The game even holds a large roster of animals that are <strong>Extinct in the Wild</strong> or <strong>Extinct</strong>.</p>
+          <p data-i18n="cons.p3">It's a small way to put the spotlight on a natural world that needs it — giving a face to species you might otherwise never meet.</p>
           <ul class="cons-list">
             <li><span class="dot lc"></span> <span data-i18n="cons.lc">Least Concern</span></li>
             <li><span class="dot nt"></span> <span data-i18n="cons.nt">Near Threatened</span></li>
             <li><span class="dot vu"></span> <span data-i18n="cons.vu">Vulnerable</span></li>
             <li><span class="dot en"></span> <span data-i18n="cons.en">Endangered</span></li>
             <li><span class="dot cr"></span> <span data-i18n="cons.cr">Critically Endangered</span></li>
-            <li><span class="dot ex"></span> <span data-i18n="cons.ex">Extinct</span></li>
+            <li><span class="dot ex"></span> <span data-i18n="cons.ex">Extinct / Extinct in the Wild</span></li>
           </ul>
         </div>
         <div class="cons-phone">
@@ -177,9 +224,9 @@
     <section class="final-cta">
       <div class="hero-glow" aria-hidden="true"></div>
       <h2 data-i18n="final.title">Start your collection</h2>
-      <p data-i18n="final.sub">2,400+ species are waiting to be discovered. Android first, more platforms to follow.</p>
+      <p data-i18n="final.sub">2,400+ species are waiting — free, offline, on Android first.</p>
       <div class="cta-row center">
-        <a class="store-btn" href="#" aria-disabled="true" id="play-cta-2">
+        <a class="store-btn" href="#" data-play aria-disabled="true" id="play-cta-2">
           <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
             <path d="M3.6 2.3 13.5 12 3.6 21.7c-.4-.2-.7-.7-.7-1.3V3.6c0-.6.3-1.1.7-1.3Z" fill="#34d399"/>
             <path d="m16.4 8.9 3 1.7c1 .6 1 2.2 0 2.8l-3 1.7L13.5 12l2.9-3.1Z" fill="#fbbf24"/>
@@ -199,14 +246,14 @@
   <footer class="site-footer">
     <div class="foot-brand">
       <a class="foot-wordmark" href="index.html">
-        <img src="assets/brand/app-icon.webp" alt="" width="34" height="34" />
+        <img src="assets/brand/studio-mark.webp" alt="" width="34" height="34" />
         <span>Maraverse Games</span>
       </a>
       <p data-i18n="foot.tagGame">The Wildlife Collection is a Maraverse Games title.</p>
     </div>
     <nav class="foot-links">
       <a href="#features" data-i18n="nav.features">Features</a>
-      <a href="#screens" data-i18n="nav.screens">Screens</a>
+      <a href="#learn" data-i18n="nav.learn">Learn</a>
       <a href="#conservation" data-i18n="nav.conservation">Conservation</a>
       <a href="privacy.html" data-i18n="foot.privacy">Privacy</a>
       <a href="mailto:admin.mara.games@gmail.com" data-i18n="foot.contact">Contact</a>
