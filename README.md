@@ -18,8 +18,24 @@ Live at **maraversegames.com** (once deployed).
 └── assets/
     ├── brand/    ← app icon + favicons
     ├── screens/  ← in-app screenshots (EN + ES)
-    └── marquee/  ← species thumbnails for the scrolling strip
+    ├── games/    ← teaser art for upcoming worlds (prehistory, cosmos, fantasy)
+    ├── marquee/  ← species thumbnails for the scrolling strip
+    └── video/    ← optional hero gameplay clip (see "Two things to set", below)
 ```
+
+## Page sections
+
+**`the-wildlife-collection.html`** (the conversion-focused game landing):
+hero (experience-first copy + optional "Watch gameplay" button) → species marquee →
+headline stats → free/offline band → features → **Chase the rares** (foil-card
+composition) → mid-page CTA → Learn → screen gallery → Conservation → **social proof**
+(placeholder reviews, ready for Google Play) → final CTA.
+
+**`index.html`** (studio hub): hero → marquee → Our games → **The Maraverse** (the four
+universes: Nature · Prehistory · Space · Fantasy) → studio story → final CTA.
+
+All headline numbers, rare-card foils and the world tiles are built from the existing
+WebP assets with CSS — no extra binaries to ship.
 
 ## Structure & how it grows
 
@@ -43,11 +59,26 @@ python -m http.server 8000
 ## Two things to set before launch
 
 1. **Google Play link** — when the store listing is live, paste the URL into
-   `PLAY_STORE_URL` at the top of [`main.js`](main.js). Both "Get it on Google Play"
-   buttons on the game page activate automatically and the "Launching soon" note hides.
+   `PLAY_STORE_URL` at the top of [`main.js`](main.js). All "Get it on Google Play"
+   buttons (hero, mid-page and final CTA) activate automatically and the "Launching soon"
+   note hides.
 2. **Privacy policy** — [`privacy.html`](privacy.html) is a draft template. Complete it
    against the SDKs actually shipped (ads, crash reporting, Play Games). Google Play
    requires a public privacy-policy URL.
+
+### Optional — gameplay video
+
+Drop a short (20–30s) clip at `assets/video/gameplay.mp4` (optionally also `.webm`) and
+set the path(s) in the `HERO_VIDEO` object at the top of [`main.js`](main.js). A "Watch
+gameplay" button then appears on the hero phone and opens a lightweight modal player.
+Until a path is set, nothing shows — the hero stays clean. Same opt-in pattern as
+`PLAY_STORE_URL`.
+
+### Social proof
+
+The reviews section on the game page uses placeholder quotes (`social.*` in the `I18N`
+dictionary) styled for real Google Play reviews. Swap the text and attribution for genuine
+reviews once the listing has them — the layout is already in place.
 
 > Contact email is currently `admin.mara.games@gmail.com`. Once the
 > `maraversegames.com` domain + email are set up, switch it to `contact@maraversegames.com`

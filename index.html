@@ -3,15 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maraverse Games — Worlds worth collecting</title>
+  <title>Maraverse Games — Indie Studio · Worlds Worth Collecting</title>
   <meta name="description" data-i18n="studio.meta"
-    content="Maraverse Games is an indie studio crafting collection and adventure games across real and imagined worlds — starting with The Wildlife Collection." />
+    content="Maraverse Games is a one-person indie studio crafting collection games across real and imagined worlds — nature, prehistory, space and fantasy. First game: The Wildlife Collection, a free offline wildlife card game." />
+  <meta name="keywords" content="indie game studio, collection games, Maraverse Games, wildlife card game, animal collection game" />
+  <link rel="canonical" href="https://maraversegames.com/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Maraverse Games" />
-  <meta property="og:description" content="An indie studio crafting collection and adventure games across real and imagined worlds." />
-  <meta property="og:image" content="assets/brand/studio-mark.webp" />
+  <meta property="og:url" content="https://maraversegames.com/" />
+  <meta property="og:title" content="Maraverse Games — Worlds worth collecting" />
+  <meta property="og:description" content="A one-person indie studio crafting collection games across real and imagined worlds — starting with The Wildlife Collection." />
+  <meta property="og:image" content="https://maraversegames.com/assets/brand/studio-mark.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Maraverse Games — Worlds worth collecting" />
+  <meta name="twitter:description" content="A one-person indie studio crafting collection games across real and imagined worlds." />
+  <meta name="twitter:image" content="https://maraversegames.com/assets/brand/studio-mark.webp" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/studio-favicon-32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="assets/brand/studio-favicon-192.png" />
@@ -19,16 +26,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Maraverse Games",
+    "description": "A one-person indie studio crafting collection games across real and imagined worlds.",
+    "url": "https://maraversegames.com/",
+    "logo": "https://maraversegames.com/assets/brand/studio-mark.webp",
+    "foundingDate": "2023",
+    "slogan": "Worlds worth collecting."
+  }
+  </script>
 </head>
 <body>
   <!-- ===== Header ===== -->
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Maraverse Games">
-      <img src="assets/brand/studio-mark.webp" alt="" class="brand-icon" width="40" height="40" />
+      <img src="assets/brand/studio-mark.webp" alt="Maraverse Games logo" class="brand-icon" width="40" height="40" />
       <span class="brand-name">Maraverse Games</span>
     </a>
     <nav class="nav">
       <a href="#games" data-i18n="studio.nav.games">Games</a>
+      <a href="#worlds" data-i18n="studio.nav.worlds">Worlds</a>
       <a href="#about" data-i18n="studio.nav.about">Studio</a>
       <a href="mailto:admin.mara.games@gmail.com" data-i18n="foot.contact">Contact</a>
       <div class="lang-toggle" role="group" aria-label="Language">
@@ -46,8 +67,8 @@
         <span class="eyebrow" data-i18n="studio.eyebrow">Indie game studio</span>
         <h1 class="hero-title" data-i18n="studio.title">Worlds worth<br />collecting.</h1>
         <p class="hero-sub" data-i18n="studio.sub">
-          We're <strong>Maraverse Games</strong> — a one-person indie studio making collection and
-          adventure games about the real and imagined worlds worth knowing. Our first one is here:
+          We're <strong>Maraverse Games</strong> — a one-person indie studio making collection
+          games about the worlds, real and imagined, worth knowing. Our first one is here:
           <strong>The Wildlife Collection</strong>.
         </p>
         <div class="cta-row">
@@ -78,7 +99,7 @@
         <!-- Featured: live game -->
         <a class="game-card featured" href="the-wildlife-collection.html">
           <div class="game-cover">
-            <img data-shot="home" src="assets/screens/home-en.webp" alt="The Wildlife Collection" loading="lazy" />
+            <img data-shot="home" src="assets/screens/home-en.webp" alt="The Wildlife Collection home screen" loading="lazy" />
           </div>
           <div class="game-info">
             <span class="game-status live" data-i18n="studio.status.soon">Coming soon · Android</span>
@@ -90,21 +111,21 @@
 
         <!-- Coming-soon teasers (themes hinted, names still secret) -->
         <div class="game-card soon">
-          <div class="game-cover teaser"><img src="assets/games/prehistory.webp" alt="" loading="lazy" /></div>
+          <div class="game-cover teaser"><img src="assets/games/prehistory.webp" alt="Prehistory-themed game in development" loading="lazy" /></div>
           <div class="game-info">
             <span class="game-status" data-i18n="studio.status.coming">Coming soon</span>
             <h3 data-i18n="studio.soon.tile1">When giants ruled the Earth</h3>
           </div>
         </div>
         <div class="game-card soon">
-          <div class="game-cover teaser"><img src="assets/games/cosmos.webp" alt="" loading="lazy" /></div>
+          <div class="game-cover teaser"><img src="assets/games/cosmos.webp" alt="Space-themed game in development" loading="lazy" /></div>
           <div class="game-info">
             <span class="game-status" data-i18n="studio.status.coming">Coming soon</span>
             <h3 data-i18n="studio.soon.tile2">Beyond the stars</h3>
           </div>
         </div>
         <div class="game-card soon">
-          <div class="game-cover teaser"><img src="assets/games/fantasy.webp" alt="" loading="lazy" /></div>
+          <div class="game-cover teaser"><img src="assets/games/fantasy.webp" alt="Fantasy-themed game in development" loading="lazy" /></div>
           <div class="game-info">
             <span class="game-status" data-i18n="studio.status.coming">Coming soon</span>
             <h3 data-i18n="studio.soon.tile3">A realm of legend</h3>
@@ -114,15 +135,44 @@
       <p class="games-note" data-i18n="studio.soon.note">Three more worlds are already taking shape — names still secret, coming soon.</p>
     </section>
 
+    <!-- ===== Four worlds (the Maraverse) ===== -->
+    <section class="section worlds" id="worlds">
+      <span class="eyebrow center" data-i18n="worlds.eyebrow">One studio, four universes</span>
+      <h2 class="section-title" data-i18n="worlds.title">The Maraverse</h2>
+      <p class="section-lead" data-i18n="worlds.lead">Every Maraverse game is a world worth collecting — connected by the same care, the same craft.</p>
+      <div class="worlds-strip">
+        <article class="world live">
+          <div class="world-art"><img src="assets/marquee/Lion.webp" alt="Nature world — wildlife" loading="lazy" /></div>
+          <div class="world-tag" data-i18n="worlds.nature.t">Nature</div>
+          <p data-i18n="worlds.nature.d">Real species, here now.</p>
+        </article>
+        <article class="world">
+          <div class="world-art"><img src="assets/games/prehistory.webp" alt="Prehistory world" loading="lazy" /></div>
+          <div class="world-tag" data-i18n="worlds.prehistory.t">Prehistory</div>
+          <p data-i18n="worlds.prehistory.d">When giants ruled the Earth.</p>
+        </article>
+        <article class="world">
+          <div class="world-art"><img src="assets/games/cosmos.webp" alt="Space world" loading="lazy" /></div>
+          <div class="world-tag" data-i18n="worlds.space.t">Space</div>
+          <p data-i18n="worlds.space.d">Beyond the stars.</p>
+        </article>
+        <article class="world">
+          <div class="world-art"><img src="assets/games/fantasy.webp" alt="Fantasy world" loading="lazy" /></div>
+          <div class="world-tag" data-i18n="worlds.fantasy.t">Fantasy</div>
+          <p data-i18n="worlds.fantasy.d">A realm of legend.</p>
+        </article>
+      </div>
+    </section>
+
     <!-- ===== Story ===== -->
     <section class="section story-section" id="about">
       <span class="eyebrow center" data-i18n="studio.story.eyebrow">Our story</span>
       <h2 class="section-title" data-i18n="studio.story.title">Where Maraverse Games comes from</h2>
       <div class="story">
-        <p data-i18n="studio.story.p1">I've been a software engineer for years, but games came first. I started coding at 15 precisely to build them — little black-and-white games written in C — and even my final engineering project was my own take on a game I loved. My career later went a different way, yet making games stayed with me as the thing I'd always come back to in my spare time.</p>
-        <p data-i18n="studio.story.p2">For a long time, though, that's all it could be: a hobby. Building something like The Wildlife Collection — more than <strong>2,600 realistic, hand-reviewed animal illustrations</strong> — was simply impossible for one person to draw or afford. Then AI changed the maths, and since late 2023 I've finally been able to build the worlds I'd only ever imagined, entirely on my own.</p>
-        <p data-i18n="studio.story.p3">And they're worlds I genuinely love. I'm fascinated by science and nature — biology, astronomy, palaeontology — and I photograph birds in my free time. These games are how I bring those passions together, and how I get to share a natural world most of us rarely meet. The first one took shape on the other side of the planet, during a honeymoon we were lucky enough to spend living in Asia for three months.</p>
-        <p class="about-mara" data-i18n="studio.story.mara">There's one last piece of home in all this. In January 2020 we adopted <strong>Mara</strong>, our dog, from a local shelter — an overlooked breed who arrived in a heartbreaking state and quickly became family. The studio carries her name, and you'll find her on everything we make. 🐾</p>
+        <p data-i18n="studio.story.p1">Games came first. I started coding at 15 to build them — little black-and-white games in C — and even my final engineering project was my own take on a game I loved. My career went another way, but making games stayed the thing I always came back to.</p>
+        <p data-i18n="studio.story.p2">For years it could only be a hobby. Something like The Wildlife Collection — over <strong>2,600 realistic, hand-reviewed animal illustrations</strong> — was impossible for one person to draw or afford. Then AI changed the maths, and since late 2023 I've finally built the worlds I'd only imagined, on my own.</p>
+        <p data-i18n="studio.story.p3">And they're worlds I love. I'm fascinated by science and nature — biology, astronomy, palaeontology — and I photograph birds in my spare time. These games bring those passions together. The first took shape on the other side of the planet, during three months living in Asia on our honeymoon.</p>
+        <p class="about-mara" data-i18n="studio.story.mara">One last piece of home: in January 2020 we adopted <strong>Mara</strong>, our dog, from a local shelter — she arrived in a heartbreaking state and quickly became family. The studio carries her name, and you'll find her on everything we make. 🐾</p>
         <p class="story-sign" data-i18n="studio.story.sign">— Adrián, founder of Maraverse Games</p>
       </div>
       <ul class="about-values">
@@ -154,13 +204,14 @@
   <footer class="site-footer">
     <div class="foot-brand">
       <a class="foot-wordmark" href="#top">
-        <img src="assets/brand/studio-mark.webp" alt="" width="34" height="34" />
+        <img src="assets/brand/studio-mark.webp" alt="Maraverse Games logo" width="34" height="34" />
         <span>Maraverse Games</span>
       </a>
       <p data-i18n="foot.tag">An indie game studio. Worlds worth collecting.</p>
     </div>
     <nav class="foot-links">
       <a href="#games" data-i18n="studio.nav.games">Games</a>
+      <a href="#worlds" data-i18n="studio.nav.worlds">Worlds</a>
       <a href="#about" data-i18n="studio.nav.about">Studio</a>
       <a href="privacy.html" data-i18n="foot.privacy">Privacy</a>
       <a href="mailto:admin.mara.games@gmail.com" data-i18n="foot.contact">Contact</a>
