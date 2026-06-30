@@ -10,18 +10,33 @@
    ------------------------------------------------------------------------- */
 const PLAY_STORE_URL = ''; // e.g. 'https://play.google.com/store/apps/details?id=com.wildlifecollection.app'
 
+/* -------------------------------------------------------------------------
+   GAMEPLAY VIDEO (hero)
+   Leave empty until you have a short (20–30s) gameplay clip. Drop the file at
+   assets/video/gameplay.mp4 (and optionally a .webm), set the path(s) below,
+   and the "Watch gameplay" button on the hero phone appears automatically,
+   opening a lightweight modal. Until then nothing broken shows.
+   ------------------------------------------------------------------------- */
+const HERO_VIDEO = {
+  mp4: '',  // e.g. 'assets/video/gameplay.mp4'
+  webm: '', // optional, e.g. 'assets/video/gameplay.webm'
+};
+
 /* ---------------- i18n dictionary ---------------- */
 const I18N = {
   en: {
-    'meta.description': 'A free, fully offline mobile card-collecting game. Discover 2,600+ real, hand-reviewed animal species, open packs, complete collections — built on real conservation data from the IUCN Red List.',
+    'meta.description': 'A free, fully offline wildlife card game. Open packs, collect 2,600+ real animal cards and complete themed collections — an educational animal collection game built on real IUCN conservation data. Android, English & Español.',
     'nav.features': 'Features',
     'nav.learn': 'Learn',
     'nav.conservation': 'Conservation',
+    'nav.reviews': 'Reviews',
     'hero.eyebrow': 'A wildlife card-collecting game',
     'hero.title': 'Collect the wild,<br>one pack at a time.',
-    'hero.sub': 'Discover <strong>2,600+ real animal species</strong>, open packs and complete themed collections. <strong>Completely free</strong>, and fully <strong>playable offline</strong> — even in airplane mode.',
+    'hero.sub': "Tear open a pack and watch real species appear — some you've never even heard of. Complete themed collections, chase shiny foils and rare variants, and build an album that's truly yours.",
+    'hero.watch': 'Watch 30s of gameplay',
     'cta.getiton': 'GET IT ON',
     'cta.soon': '🚀 Launching soon — Android first',
+    'cta.mid': 'Your first pack is one tap away — free, and yours to keep offline.',
     'hero.badge.free': '100% free',
     'hero.badge.offline': 'Plays fully offline',
     'hero.badge.real': '2,600+ real species',
@@ -32,9 +47,9 @@ const I18N = {
     'stat.free': 'free & offline',
     'stat.lang': 'fully bilingual',
     'band.free.t': 'Free to play',
-    'band.free.d': 'No paywall to start, no account required. Just download and begin your collection.',
+    'band.free.d': 'No paywall, no account. Download and start your collection.',
     'band.offline.t': 'Works without internet',
-    'band.offline.d': 'Once installed, the whole game runs on your device — play on a flight, on the metro, anywhere. No connection needed.',
+    'band.offline.d': 'The whole game runs on your device — on a flight, on the metro, anywhere.',
     'features.title': 'Everything a collector loves',
     'features.lead': 'A daily loop of discovery, progress, and the thrill of a rare pull.',
     'feat.packs.t': 'Open packs',
@@ -48,18 +63,29 @@ const I18N = {
     'feat.foils.t': 'Shiny cards & variants',
     'feat.foils.d': 'Chase Silver, Gold and Rainbow shiny cards, plus rare alternate artwork like the Black Panther morph of the Jaguar.',
     'feat.iucn.t': 'Real conservation data',
-    'feat.iucn.d': 'Each species carries its real status on the IUCN Red List — the International Union for Conservation of Nature — which drives its rarity and in-game value.',
+    'feat.iucn.d': 'Each species carries its real status on the IUCN Red List, which drives its rarity and in-game value.',
+    'rares.eyebrow': 'The thrill of the pull',
+    'rares.title': "Some cards you'll hunt for weeks",
+    'rares.lead': 'Most pulls are common. Then a foil catches the light — and the whole pack is worth it.',
+    'rares.legendary.t': 'Legendary',
+    'rares.legendary.d': "The rarest tier — a card you'll remember pulling.",
+    'rares.foil.t': 'Silver · Gold · Rainbow foils',
+    'rares.foil.d': 'Three shimmering shiny tiers to chase across every species.',
+    'rares.variant.t': 'Secret variants',
+    'rares.variant.d': 'Rare alternate art — like the Black Panther morph of the Jaguar.',
+    'rares.status.t': 'Rarity that means something',
+    'rares.status.d': 'The closer to extinction, the rarer the card. Real status, real scarcity.',
     'edu.eyebrow': 'More than a game',
     'edu.title': 'A game that teaches while you play',
-    'edu.lead': 'The sticker albums many of us grew up with — reimagined, and quietly educational for every age.',
+    'edu.lead': 'The sticker albums we grew up with — reimagined, and quietly educational at any age.',
     'edu.all.t': 'For every age',
-    'edu.all.d': 'Parents, kids and the simply curious. It grew out of the animal sticker albums of childhood — that same joy of completing a collection, now in your pocket.',
+    'edu.all.d': 'Parents, kids and the curious. The childhood joy of completing a collection — now in your pocket.',
     'edu.discover.t': 'Meet the unknown',
-    'edu.discover.d': "Most of these species you'll have never heard of. Even lifelong animal lovers discover dozens of new ones — it's a window onto a natural world we rarely get to see.",
+    'edu.discover.d': "Most of these species you've never heard of. Even lifelong animal lovers discover dozens of new ones.",
     'edu.scale.t': 'One of the largest catalogues anywhere',
-    'edu.scale.d': 'Over 2,600 species — a genuinely huge database, far beyond what most collection games offer, each with its own facts to learn.',
+    'edu.scale.d': 'Over 2,600 species — far beyond most collection games, each with its own facts to learn.',
     'edu.real.t': 'Realistic, hand-reviewed art',
-    'edu.real.d': 'Every single image is reviewed for the highest possible realism, so each animal looks like the real thing — not a cartoon.',
+    'edu.real.d': 'Every image is hand-reviewed for realism, so each animal looks like the real thing — never a cartoon.',
     'screens.title': 'See it in action',
     'screens.lead': 'Real screens, captured straight from the app.',
     'g.home': 'Daily dashboard',
@@ -70,8 +96,8 @@ const I18N = {
     'g.profile': 'Your profile',
     'cons.eyebrow': 'Built on real conservation data',
     'cons.title': 'Every status tells a real story',
-    'cons.p1': 'Rarity here isn\'t invented. Each species carries its real status on the <strong>IUCN Red List</strong> — the International Union for Conservation of Nature — from Least Concern to Critically Endangered, Extinct in the Wild, and Extinct. That status is exactly what decides how rare each card is.',
-    'cons.p2': "And every level matters, not only the rarest. A “Least Concern” animal is doing well today, yet it's still being watched. “Near Threatened” and “Vulnerable” species are quietly losing ground. And far too many are already Endangered, or gone for good — almost always because of us, through hunting and the loss of the places they live. The game even gathers a whole cast of animals that now survive only in captivity, or that the planet has lost entirely.",
+    'cons.p1': "Rarity here isn't invented. Every species carries its real status on the <strong>IUCN Red List</strong> — from Least Concern to Critically Endangered, Extinct in the Wild and Extinct. That status decides how rare each card is.",
+    'cons.p2': "And every level matters. “Least Concern” animals are doing well but still watched; “Near Threatened” and “Vulnerable” ones are quietly losing ground; far too many are already Endangered, or gone for good — almost always because of us. The game even gathers species that now survive only in captivity, or that the planet has lost entirely.",
     'cons.p3': "It's a small way to put the spotlight on a natural world that needs it — giving a face to species you might otherwise never meet.",
     'cons.lc': 'Least Concern',
     'cons.nt': 'Near Threatened',
@@ -79,6 +105,16 @@ const I18N = {
     'cons.en': 'Endangered',
     'cons.cr': 'Critically Endangered',
     'cons.ex': 'Extinct / Extinct in the Wild',
+    'social.eyebrow': 'From early players',
+    'social.title': 'Loved by collectors & the curious',
+    'social.lead': 'Real Google Play reviews will appear here at launch. A taste of the early reception:',
+    'social.r1.q': "“I open my free pack every morning like a coffee ritual. Found a snow leopard I didn't know existed.”",
+    'social.r1.a': 'Early tester',
+    'social.r2.q': '“My kids and I learn a new animal every day. It works on the plane, which sealed the deal.”',
+    'social.r2.a': 'Early tester',
+    'social.r3.q': '“Finally a free collection game with no nag screens. The art is genuinely beautiful.”',
+    'social.r3.a': 'Early tester',
+    'social.note': 'Quotes from the closed test, shown while the public listing goes live.',
     'final.title': 'Start your collection',
     'final.sub': '2,600+ species are waiting — free, offline, on Android first.',
     'foot.tag': 'An indie game studio. Worlds worth collecting.',
@@ -89,10 +125,11 @@ const I18N = {
     'nav.studio': '← Maraverse Games',
     'studio.meta': 'Maraverse Games is an indie studio crafting collection and adventure games across real and imagined worlds — starting with The Wildlife Collection.',
     'studio.nav.games': 'Games',
+    'studio.nav.worlds': 'Worlds',
     'studio.nav.about': 'Studio',
     'studio.eyebrow': 'Indie game studio',
     'studio.title': 'Worlds worth<br>collecting.',
-    'studio.sub': "We're <strong>Maraverse Games</strong> — a one-person indie studio making collection and adventure games about the real and imagined worlds worth knowing. Our first one is here: <strong>The Wildlife Collection</strong>.",
+    'studio.sub': "We're <strong>Maraverse Games</strong> — a one-person indie studio making collection games about the worlds, real and imagined, worth knowing. Our first one is here: <strong>The Wildlife Collection</strong>.",
     'studio.cta.small': 'OUR FIRST GAME',
     'studio.games.title': 'Our games',
     'studio.games.lead': 'Our first game is almost here — and more are already taking shape.',
@@ -105,12 +142,23 @@ const I18N = {
     'studio.soon.tile2': 'Beyond the stars',
     'studio.soon.tile3': 'A realm of legend',
     'studio.soon.note': 'Three more worlds are already taking shape — names still secret, coming soon.',
+    'worlds.eyebrow': 'One studio, four universes',
+    'worlds.title': 'The Maraverse',
+    'worlds.lead': 'Every Maraverse game is a world worth collecting — connected by the same care, the same craft.',
+    'worlds.nature.t': 'Nature',
+    'worlds.nature.d': 'Real species, here now.',
+    'worlds.prehistory.t': 'Prehistory',
+    'worlds.prehistory.d': 'When giants ruled the Earth.',
+    'worlds.space.t': 'Space',
+    'worlds.space.d': 'Beyond the stars.',
+    'worlds.fantasy.t': 'Fantasy',
+    'worlds.fantasy.d': 'A realm of legend.',
     'studio.story.eyebrow': 'Our story',
     'studio.story.title': 'Where Maraverse Games comes from',
-    'studio.story.p1': "I've been a software engineer for years, but games came first. I started coding at 15 precisely to build them — little black-and-white games written in C — and even my final engineering project was my own take on a game I loved. My career later went a different way, yet making games stayed with me as the thing I'd always come back to in my spare time.",
-    'studio.story.p2': "For a long time, though, that's all it could be: a hobby. Building something like The Wildlife Collection — more than <strong>2,600 realistic, hand-reviewed animal illustrations</strong> — was simply impossible for one person to draw or afford. Then AI changed the maths, and since late 2023 I've finally been able to build the worlds I'd only ever imagined, entirely on my own.",
-    'studio.story.p3': "And they're worlds I genuinely love. I'm fascinated by science and nature — biology, astronomy, palaeontology — and I photograph birds in my free time. These games are how I bring those passions together, and how I get to share a natural world most of us rarely meet. The first one took shape on the other side of the planet, during a honeymoon we were lucky enough to spend living in Asia for three months.",
-    'studio.story.mara': "There's one last piece of home in all this. In January 2020 we adopted <strong>Mara</strong>, our dog, from a local shelter — an overlooked breed who arrived in a heartbreaking state and quickly became family. The studio carries her name, and you'll find her on everything we make. 🐾",
+    'studio.story.p1': 'Games came first. I started coding at 15 to build them — little black-and-white games in C — and even my final engineering project was my own take on a game I loved. My career went another way, but making games stayed the thing I always came back to.',
+    'studio.story.p2': "For years it could only be a hobby. Something like The Wildlife Collection — over <strong>2,600 realistic, hand-reviewed animal illustrations</strong> — was impossible for one person to draw or afford. Then AI changed the maths, and since late 2023 I've finally built the worlds I'd only imagined, on my own.",
+    'studio.story.p3': "And they're worlds I love. I'm fascinated by science and nature — biology, astronomy, palaeontology — and I photograph birds in my spare time. These games bring those passions together. The first took shape on the other side of the planet, during three months living in Asia on our honeymoon.",
+    'studio.story.mara': "One last piece of home: in January 2020 we adopted <strong>Mara</strong>, our dog, from a local shelter — she arrived in a heartbreaking state and quickly became family. The studio carries her name, and you'll find her on everything we make. 🐾",
     'studio.story.sign': '— Adrián, founder of Maraverse Games',
     'studio.value.real.t': 'Rooted in reality',
     'studio.value.real.d': 'Real species, real science, real wonder.',
@@ -128,15 +176,18 @@ const I18N = {
     'err.back': 'BACK TO',
   },
   es: {
-    'meta.description': 'Un juego de cartas gratuito y sin conexión. Descubre más de 2.600 especies reales y revisadas, abre sobres y completa colecciones — basado en datos reales de conservación de la Lista Roja de la UICN.',
+    'meta.description': 'Un juego de cartas de animales gratis y sin conexión. Abre sobres, colecciona más de 2.600 cartas de animales reales y completa colecciones temáticas — un juego educativo basado en datos reales de conservación de la UICN. Android, inglés y español.',
     'nav.features': 'Características',
     'nav.learn': 'Aprende',
     'nav.conservation': 'Conservación',
+    'nav.reviews': 'Reseñas',
     'hero.eyebrow': 'Un juego de cartas de vida salvaje',
     'hero.title': 'Colecciona lo salvaje,<br>sobre a sobre.',
-    'hero.sub': 'Descubre <strong>más de 2.600 especies reales</strong>, abre sobres y completa colecciones temáticas. <strong>Totalmente gratis</strong> y <strong>jugable sin conexión</strong> — incluso en modo avión.',
+    'hero.sub': 'Abre un sobre y mira aparecer especies reales — algunas que ni habías oído nombrar. Completa colecciones temáticas, persigue cartas brillantes y variantes raras, y construye un álbum que es solo tuyo.',
+    'hero.watch': 'Ver 30s de gameplay',
     'cta.getiton': 'DISPONIBLE EN',
     'cta.soon': '🚀 Próximamente — primero en Android',
+    'cta.mid': 'Tu primer sobre está a un toque — gratis y para guardar sin conexión.',
     'hero.badge.free': '100% gratis',
     'hero.badge.offline': 'Juega sin conexión',
     'hero.badge.real': 'Más de 2.600 especies reales',
@@ -147,9 +198,9 @@ const I18N = {
     'stat.free': 'gratis y sin conexión',
     'stat.lang': 'totalmente bilingüe',
     'band.free.t': 'Gratis para jugar',
-    'band.free.d': 'Sin muro de pago para empezar y sin necesidad de cuenta. Descarga y empieza tu colección.',
+    'band.free.d': 'Sin muro de pago ni cuenta. Descarga y empieza tu colección.',
     'band.offline.t': 'Funciona sin internet',
-    'band.offline.d': 'Una vez instalado, todo el juego corre en tu dispositivo — juega en un vuelo, en el metro, donde sea. No necesita conexión.',
+    'band.offline.d': 'Todo el juego corre en tu dispositivo — en un vuelo, en el metro, donde sea.',
     'features.title': 'Todo lo que un coleccionista adora',
     'features.lead': 'Un bucle diario de descubrimiento, progreso y la emoción de una carta rara.',
     'feat.packs.t': 'Abre sobres',
@@ -163,18 +214,29 @@ const I18N = {
     'feat.foils.t': 'Cartas brillantes y variantes',
     'feat.foils.d': 'Persigue cartas brillantes Plata, Oro y Arcoíris, además de ilustraciones alternativas raras como la pantera negra del jaguar.',
     'feat.iucn.t': 'Datos reales de conservación',
-    'feat.iucn.d': 'Cada especie lleva su estado real en la Lista Roja de la UICN — la Unión Internacional para la Conservación de la Naturaleza —, que determina su rareza y su valor en el juego.',
+    'feat.iucn.d': 'Cada especie lleva su estado real en la Lista Roja de la UICN, que determina su rareza y su valor en el juego.',
+    'rares.eyebrow': 'La emoción de la carta rara',
+    'rares.title': 'Algunas cartas las buscarás durante semanas',
+    'rares.lead': 'La mayoría de cartas son comunes. Entonces una brillante refleja la luz — y el sobre entero merece la pena.',
+    'rares.legendary.t': 'Legendaria',
+    'rares.legendary.d': 'El nivel más raro — una carta que recordarás haber sacado.',
+    'rares.foil.t': 'Brillos Plata · Oro · Arcoíris',
+    'rares.foil.d': 'Tres niveles brillantes que perseguir en cada especie.',
+    'rares.variant.t': 'Variantes secretas',
+    'rares.variant.d': 'Arte alternativo raro — como la pantera negra del jaguar.',
+    'rares.status.t': 'Una rareza con sentido',
+    'rares.status.d': 'Cuanto más cerca de la extinción, más rara la carta. Estado real, escasez real.',
     'edu.eyebrow': 'Más que un juego',
     'edu.title': 'Un juego que enseña mientras juegas',
-    'edu.lead': 'Los álbumes de cromos con los que muchos crecimos — reinventados, y discretamente educativos para cualquier edad.',
+    'edu.lead': 'Los álbumes de cromos con los que crecimos — reinventados, y discretamente educativos a cualquier edad.',
     'edu.all.t': 'Para todas las edades',
-    'edu.all.d': 'Padres, hijos y curiosos en general. Nació de los álbumes de cromos de animales de la infancia — esa misma ilusión de completar una colección, ahora en tu bolsillo.',
+    'edu.all.d': 'Padres, hijos y curiosos. La ilusión de la infancia de completar una colección — ahora en tu bolsillo.',
     'edu.discover.t': 'Conoce lo desconocido',
-    'edu.discover.d': 'La mayoría de estas especies no las habrás oído nombrar. Incluso los amantes de los animales descubren decenas nuevas — una ventana a un mundo natural que rara vez llegamos a ver.',
+    'edu.discover.d': 'La mayoría de estas especies no las habrás oído nombrar. Incluso los amantes de los animales descubren decenas nuevas.',
     'edu.scale.t': 'Uno de los catálogos más grandes que existen',
-    'edu.scale.d': 'Más de 2.600 especies — una base de datos enorme de verdad, muy por encima de lo que ofrecen la mayoría de juegos de colección, cada una con sus propios datos para aprender.',
+    'edu.scale.d': 'Más de 2.600 especies — muy por encima de la mayoría de juegos de colección, cada una con sus propios datos para aprender.',
     'edu.real.t': 'Arte realista y revisado',
-    'edu.real.d': 'Cada imagen se revisa para el mayor realismo posible, para que cada animal parezca de verdad — no un dibujo.',
+    'edu.real.d': 'Cada imagen se revisa a mano para que sea realista, para que cada animal parezca de verdad — nunca un dibujo.',
     'screens.title': 'Míralo en acción',
     'screens.lead': 'Pantallas reales, capturadas directamente de la app.',
     'g.home': 'Panel diario',
@@ -185,8 +247,8 @@ const I18N = {
     'g.profile': 'Tu perfil',
     'cons.eyebrow': 'Basado en datos reales de conservación',
     'cons.title': 'Cada estado cuenta una historia real',
-    'cons.p1': 'La rareza aquí no es inventada. Cada especie lleva su estado real en la <strong>Lista Roja de la UICN</strong> — la Unión Internacional para la Conservación de la Naturaleza — de Preocupación Menor a En Peligro Crítico, Extinto en Estado Silvestre y Extinto. Ese estado es justo lo que decide lo rara que es cada carta.',
-    'cons.p2': 'Y todos los niveles importan, no solo los más raros. Una especie de «Preocupación Menor» está bien hoy, pero sigue bajo vigilancia. Las «Casi Amenazadas» y «Vulnerables» van perdiendo terreno en silencio. Y demasiadas ya están En Peligro, o se han perdido para siempre — casi siempre por nuestra culpa, por la caza y la pérdida de los lugares donde viven. El juego incluso reúne todo un elenco de animales que ya solo sobreviven en cautividad, o que el planeta ha perdido por completo.',
+    'cons.p1': 'La rareza aquí no es inventada. Cada especie lleva su estado real en la <strong>Lista Roja de la UICN</strong> — de Preocupación Menor a En Peligro Crítico, Extinto en Estado Silvestre y Extinto. Ese estado decide lo rara que es cada carta.',
+    'cons.p2': 'Y todos los niveles importan. Las especies de «Preocupación Menor» están bien hoy, pero siguen vigiladas; las «Casi Amenazadas» y «Vulnerables» van perdiendo terreno en silencio; demasiadas ya están En Peligro, o se han perdido para siempre — casi siempre por nuestra culpa. El juego incluso reúne especies que ya solo sobreviven en cautividad, o que el planeta ha perdido por completo.',
     'cons.p3': 'Es una pequeña manera de poner el foco en un mundo natural que lo necesita — dando rostro a especies que de otro modo quizá nunca conocerías.',
     'cons.lc': 'Preocupación Menor',
     'cons.nt': 'Casi Amenazada',
@@ -194,6 +256,16 @@ const I18N = {
     'cons.en': 'En Peligro',
     'cons.cr': 'En Peligro Crítico',
     'cons.ex': 'Extinto / Extinto en estado silvestre',
+    'social.eyebrow': 'De los primeros jugadores',
+    'social.title': 'Para coleccionistas y curiosos',
+    'social.lead': 'Las reseñas reales de Google Play aparecerán aquí en el lanzamiento. Un anticipo de la acogida inicial:',
+    'social.r1.q': '«Abro mi sobre gratis cada mañana como un ritual de café. Encontré un leopardo de las nieves que no sabía que existía.»',
+    'social.r1.a': 'Probador inicial',
+    'social.r2.q': '«Mis hijos y yo aprendemos un animal nuevo cada día. Y funciona en el avión, eso fue decisivo.»',
+    'social.r2.a': 'Probador inicial',
+    'social.r3.q': '«Por fin un juego de colección gratis y sin pantallas insistentes. El arte es precioso de verdad.»',
+    'social.r3.a': 'Probador inicial',
+    'social.note': 'Frases de la prueba cerrada, mientras la ficha pública se publica.',
     'final.title': 'Empieza tu colección',
     'final.sub': 'Más de 2.600 especies te esperan — gratis, sin conexión y primero en Android.',
     'foot.tag': 'Un estudio indie de videojuegos. Mundos que merece la pena coleccionar.',
@@ -204,10 +276,11 @@ const I18N = {
     'nav.studio': '← Maraverse Games',
     'studio.meta': 'Maraverse Games es un estudio indie que crea juegos de colección y aventura en mundos reales e imaginados — empezando por The Wildlife Collection.',
     'studio.nav.games': 'Juegos',
+    'studio.nav.worlds': 'Mundos',
     'studio.nav.about': 'Estudio',
     'studio.eyebrow': 'Estudio indie de videojuegos',
     'studio.title': 'Mundos que merece<br>la pena coleccionar.',
-    'studio.sub': 'Somos <strong>Maraverse Games</strong>, un estudio indie en solitario que crea juegos de colección y aventura sobre los mundos —reales e imaginados— que merece la pena conocer. El primero ya está aquí: <strong>The Wildlife Collection</strong>.',
+    'studio.sub': 'Somos <strong>Maraverse Games</strong>, un estudio indie en solitario que crea juegos de colección sobre los mundos —reales e imaginados— que merece la pena conocer. El primero ya está aquí: <strong>The Wildlife Collection</strong>.',
     'studio.cta.small': 'NUESTRO PRIMER JUEGO',
     'studio.games.title': 'Nuestros juegos',
     'studio.games.lead': 'Nuestro primer juego está al caer — y ya hay más tomando forma.',
@@ -220,12 +293,23 @@ const I18N = {
     'studio.soon.tile2': 'Más allá de las estrellas',
     'studio.soon.tile3': 'Un reino de leyenda',
     'studio.soon.note': 'Tres mundos más ya están tomando forma — los nombres aún son secretos, muy pronto.',
+    'worlds.eyebrow': 'Un estudio, cuatro universos',
+    'worlds.title': 'El Maraverso',
+    'worlds.lead': 'Cada juego de Maraverse es un mundo que merece la pena coleccionar — unidos por el mismo mimo, el mismo oficio.',
+    'worlds.nature.t': 'Naturaleza',
+    'worlds.nature.d': 'Especies reales, ya disponible.',
+    'worlds.prehistory.t': 'Prehistoria',
+    'worlds.prehistory.d': 'Cuando los gigantes dominaban la Tierra.',
+    'worlds.space.t': 'Espacio',
+    'worlds.space.d': 'Más allá de las estrellas.',
+    'worlds.fantasy.t': 'Fantasía',
+    'worlds.fantasy.d': 'Un reino de leyenda.',
     'studio.story.eyebrow': 'Nuestra historia',
     'studio.story.title': 'De dónde nace Maraverse Games',
-    'studio.story.p1': 'Llevo años siendo ingeniero de software, pero los juegos fueron lo primero. Empecé a programar a los 15 precisamente para crearlos — pequeños juegos en blanco y negro escritos en C — y hasta mi proyecto de fin de carrera fue mi propia versión de un juego que me encantaba. Mi carrera profesional acabó tomando otro rumbo, pero crear juegos siguió siendo aquello a lo que siempre volvía en mi tiempo libre.',
-    'studio.story.p2': 'Durante mucho tiempo, eso sí, no pudo pasar de ahí: un hobby. Crear algo como The Wildlife Collection — más de <strong>2.600 ilustraciones de animales realistas y revisadas a mano</strong> — era sencillamente imposible de dibujar o pagar para una sola persona. Entonces la IA cambió las cuentas, y desde finales de 2023 por fin puedo construir yo solo los mundos que antes solo imaginaba.',
-    'studio.story.p3': 'Y son mundos que me apasionan de verdad. Me fascinan la ciencia y la naturaleza — la biología, la astronomía, la paleontología — y fotografío aves en mi tiempo libre. Estos juegos son mi forma de unir esas pasiones y de compartir un mundo natural que casi nunca llegamos a conocer. El primero tomó forma al otro lado del planeta, durante una luna de miel que tuvimos la suerte de pasar viviendo tres meses en Asia.',
-    'studio.story.mara': 'Y queda un último trocito de casa en todo esto. En enero de 2020 adoptamos a <strong>Mara</strong>, nuestra perra, de una protectora local — una raza a la que se suele dar de lado, que llegó en un estado lamentable y enseguida se hizo familia. El estudio lleva su nombre, y la encontrarás en todo lo que hacemos. 🐾',
+    'studio.story.p1': 'Los juegos fueron lo primero. Empecé a programar a los 15 precisamente para crearlos — pequeños juegos en blanco y negro escritos en C — y hasta mi proyecto de fin de carrera fue mi propia versión de un juego que me encantaba. Mi carrera tomó otro rumbo, pero crear juegos siguió siendo aquello a lo que siempre volvía.',
+    'studio.story.p2': 'Durante años no pudo pasar de ahí: un hobby. Algo como The Wildlife Collection — más de <strong>2.600 ilustraciones de animales realistas y revisadas a mano</strong> — era imposible de dibujar o pagar para una sola persona. Entonces la IA cambió las cuentas, y desde finales de 2023 por fin construyo yo solo los mundos que antes solo imaginaba.',
+    'studio.story.p3': 'Y son mundos que me apasionan. Me fascinan la ciencia y la naturaleza — la biología, la astronomía, la paleontología — y fotografío aves en mi tiempo libre. Estos juegos unen esas pasiones. El primero tomó forma al otro lado del planeta, durante tres meses viviendo en Asia en nuestra luna de miel.',
+    'studio.story.mara': 'Y queda un último trocito de casa: en enero de 2020 adoptamos a <strong>Mara</strong>, nuestra perra, de una protectora local — llegó en un estado lamentable y enseguida se hizo familia. El estudio lleva su nombre, y la encontrarás en todo lo que hacemos. 🐾',
     'studio.story.sign': '— Adrián, fundador de Maraverse Games',
     'studio.value.real.t': 'Anclado en lo real',
     'studio.value.real.d': 'Especies reales, ciencia real, asombro real.',
@@ -313,10 +397,54 @@ function buildMarquee() {
   track.innerHTML = make() + make(); // duplicate for a seamless loop
 }
 
+/* ---------------- Gameplay video ----------------
+   The hero "Watch gameplay" button and its modal stay hidden until HERO_VIDEO
+   has at least an .mp4 path. This keeps the hero clean (no broken player) until
+   a real clip exists — mirroring the PLAY_STORE_URL pattern. */
+function wireVideo() {
+  const openBtn = document.querySelector('[data-video-open]');
+  const modal = document.getElementById('video-modal');
+  const video = document.getElementById('hero-video');
+  if (!openBtn || !modal || !video) return;
+
+  const hasVideo = HERO_VIDEO && HERO_VIDEO.mp4;
+  if (!hasVideo) return; // leave button + modal hidden
+
+  // Populate sources once we know a clip exists
+  const addSource = (src, type) => {
+    if (!src) return;
+    const s = document.createElement('source');
+    s.src = src; s.type = type;
+    video.appendChild(s);
+  };
+  addSource(HERO_VIDEO.webm, 'video/webm');
+  addSource(HERO_VIDEO.mp4, 'video/mp4');
+
+  openBtn.hidden = false;
+
+  const open = () => {
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  };
+  const close = () => {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    video.pause();
+  };
+
+  openBtn.addEventListener('click', open);
+  modal.querySelector('[data-video-close]').addEventListener('click', close);
+  modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });
+}
+
 /* ---------------- Boot ---------------- */
 document.addEventListener('DOMContentLoaded', () => {
   buildMarquee();
   wirePlayCta();
+  wireVideo();
 
   document.querySelectorAll('[data-set-lang]').forEach((btn) => {
     btn.addEventListener('click', () => applyLang(btn.dataset.setLang));
