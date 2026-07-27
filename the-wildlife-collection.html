@@ -104,11 +104,6 @@
         <div class="phone">
           <img class="phone-shot" data-shot="pack-revealed" src="assets/screens/pack-revealed-en.webp"
                alt="Opening a pack in Wildlife Collection and revealing animal cards" width="300" height="650" />
-          <!-- Play affordance: revealed by main.js only when HERO_VIDEO is set -->
-          <button type="button" class="play-badge" data-video-open hidden aria-haspopup="dialog">
-            <span class="play-badge-ico" aria-hidden="true">▶</span>
-            <span data-i18n="hero.watch">Watch 30s of gameplay</span>
-          </button>
         </div>
       </div>
     </section>
@@ -195,15 +190,6 @@
           <span class="rare-shine" aria-hidden="true"></span>
           <figcaption><b data-i18n="rares.legendary.t">Legendary</b><span data-i18n="rares.legendary.d">The rarest tier — a card you'll remember pulling.</span></figcaption>
         </figure>
-
-        <!-- Fanned supporting cards spilling from a pack -->
-        <div class="rare-fan" aria-hidden="true">
-          <img class="fan-card f1" src="assets/marquee/SnowLeopard.webp" alt="" loading="lazy" />
-          <img class="fan-card f2 foil" src="assets/marquee/ScarletMacaw.webp" alt="" loading="lazy" />
-          <img class="fan-card f3" src="assets/marquee/RedPanda.webp" alt="" loading="lazy" />
-          <img class="fan-card f4 foil" src="assets/marquee/Orca.webp" alt="" loading="lazy" />
-          <img class="fan-card f5" src="assets/marquee/PantherChameleon.webp" alt="" loading="lazy" />
-        </div>
 
         <ul class="rare-points">
           <li>
@@ -316,17 +302,17 @@
         <figure class="review">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
           <blockquote data-i18n="social.r1.q">“I open my free pack every morning like a coffee ritual. Found a snow leopard I didn't know existed.”</blockquote>
-          <figcaption><span class="rev-avatar" aria-hidden="true">🦊</span><span data-i18n="social.r1.a">Early tester</span></figcaption>
+          <figcaption><span class="rev-avatar" aria-hidden="true">🦊</span><span data-i18n="social.r1.a">Marta · early tester</span></figcaption>
         </figure>
         <figure class="review">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote data-i18n="social.r2.q">“My kids and I learn a new animal every day. It works on the plane, which sealed the deal.”</blockquote>
-          <figcaption><span class="rev-avatar" aria-hidden="true">🐢</span><span data-i18n="social.r2.a">Early tester</span></figcaption>
+          <blockquote data-i18n="social.r2.q">“My kids and I learn a new animal every day. And it works with no connection, which sealed the deal.”</blockquote>
+          <figcaption><span class="rev-avatar" aria-hidden="true">🐢</span><span data-i18n="social.r2.a">Javier · early tester</span></figcaption>
         </figure>
         <figure class="review">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
           <blockquote data-i18n="social.r3.q">“Finally a free collection game with no nag screens. The art is genuinely beautiful.”</blockquote>
-          <figcaption><span class="rev-avatar" aria-hidden="true">🦜</span><span data-i18n="social.r3.a">Early tester</span></figcaption>
+          <figcaption><span class="rev-avatar" aria-hidden="true">🦜</span><span data-i18n="social.r3.a">Lucía · early tester</span></figcaption>
         </figure>
       </div>
       <p class="social-note" data-i18n="social.note">Quotes from the closed test, shown while the public listing goes live.</p>
@@ -373,14 +359,6 @@
     </nav>
     <p class="copyright">© <span id="year">2026</span> Maraverse Games · Wildlife Collection</p>
   </footer>
-
-  <!-- ===== Gameplay video modal (opens only when HERO_VIDEO is set in main.js) ===== -->
-  <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-label="Gameplay video" hidden>
-    <button type="button" class="video-close" data-video-close aria-label="Close video">×</button>
-    <div class="video-frame">
-      <video id="hero-video" controls playsinline preload="none" poster="assets/screens/pack-revealed-en.webp"></video>
-    </div>
-  </div>
 
   <script src="main.js"></script>
 </body>

@@ -75,31 +75,24 @@ npx serve .
 python -m http.server 8000
 ```
 
-## Two things to set before launch
+## Two things to keep an eye on
 
-1. **Google Play link** — when the store listing is live, paste the URL into
-   `PLAY_STORE_URL` at the top of [`main.js`](main.js). All "Get it on Google Play"
-   buttons (hero, mid-page and final CTA) activate automatically and the "Launching soon"
-   note hides.
+1. **Google Play link** — the app is live, and `PLAY_STORE_URL` at the top of
+   [`main.js`](main.js) holds the listing URL. Every "Get it on Google Play" button
+   (hero, mid-page and final CTA) picks it up and the "Launching soon" note stays
+   hidden. Clearing the string reverts the whole site to the pre-launch state.
 2. **Privacy policy** — [`privacy.html`](privacy.html) is written against the SDKs the
    app actually ships (Firebase Analytics + Remote Config, AdMob, Sentry, Cloudflare
    asset delivery, local notifications). **Revisit it whenever the app adds or drops a
    service**, and bump the "Last updated" date. Google Play requires a public
    privacy-policy URL, and it is the URL the AdMob consent message links to.
 
-### Optional — gameplay video
-
-Drop a short (20–30s) clip at `assets/video/gameplay.mp4` (optionally also `.webm`) and
-set the path(s) in the `HERO_VIDEO` object at the top of [`main.js`](main.js). A "Watch
-gameplay" button then appears on the hero phone and opens a lightweight modal player.
-Until a path is set, nothing shows — the hero stays clean. Same opt-in pattern as
-`PLAY_STORE_URL`.
-
 ### Social proof
 
-The reviews section on the game page uses placeholder quotes (`social.*` in the `I18N`
-dictionary) styled for real Google Play reviews. Swap the text and attribution for genuine
-reviews once the listing has them — the layout is already in place.
+The reviews section on the game page uses **invented placeholder quotes** (`social.*` in
+the `I18N` dictionary), attributed to first names labelled "early tester" so they never
+read as verified Play reviews. Swap the text and attribution for genuine reviews as soon
+as the listing has them — the layout is already in place.
 
 > Contact email is currently `admin.mara.games@gmail.com`. Once the
 > `maraversegames.com` domain + email are set up, switch it to `contact@maraversegames.com`

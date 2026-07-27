@@ -4,23 +4,11 @@
 
 /* -------------------------------------------------------------------------
    GOOGLE PLAY LINK
-   Leave empty until the store listing is live. The moment you paste the real
-   URL here, both "Get it on Google Play" buttons become active links and the
-   "Launching soon" note disappears automatically. No other change needed.
+   The store listing is live: every "Get it on Google Play" button points here
+   and the "Launching soon" note stays hidden. Clearing this string reverts the
+   buttons to the pre-launch (disabled + "Launching soon") state.
    ------------------------------------------------------------------------- */
-const PLAY_STORE_URL = ''; // e.g. 'https://play.google.com/store/apps/details?id=com.wildlifecollection.app'
-
-/* -------------------------------------------------------------------------
-   GAMEPLAY VIDEO (hero)
-   Leave empty until you have a short (20–30s) gameplay clip. Drop the file at
-   assets/video/gameplay.mp4 (and optionally a .webm), set the path(s) below,
-   and the "Watch gameplay" button on the hero phone appears automatically,
-   opening a lightweight modal. Until then nothing broken shows.
-   ------------------------------------------------------------------------- */
-const HERO_VIDEO = {
-  mp4: '',  // e.g. 'assets/video/gameplay.mp4'
-  webm: '', // optional, e.g. 'assets/video/gameplay.webm'
-};
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.maraversegames.wildlifecollection';
 
 /* ---------------- i18n dictionary ---------------- */
 const I18N = {
@@ -33,7 +21,6 @@ const I18N = {
     'hero.eyebrow': 'A wildlife card-collecting game',
     'hero.title': 'Collect the wild,<br>one pack at a time.',
     'hero.sub': "Tear open a pack and watch real species appear — some you've never even heard of. Complete themed collections, chase shiny foils and rare variants, and build an album that's truly yours.",
-    'hero.watch': 'Watch 30s of gameplay',
     'cta.getiton': 'GET IT ON',
     'cta.soon': '🚀 Launching soon — Android first',
     'cta.mid': 'Your first pack is one tap away — free, and yours to keep offline.',
@@ -107,14 +94,14 @@ const I18N = {
     'cons.ex': 'Extinct / Extinct in the Wild',
     'social.eyebrow': 'From early players',
     'social.title': 'Loved by collectors & the curious',
-    'social.lead': 'Real Google Play reviews will appear here at launch. A taste of the early reception:',
+    'social.lead': 'A taste of the early reception, from the players who tested it first:',
     'social.r1.q': "“I open my free pack every morning like a coffee ritual. Found a snow leopard I didn't know existed.”",
-    'social.r1.a': 'Early tester',
-    'social.r2.q': '“My kids and I learn a new animal every day. It works on the plane, which sealed the deal.”',
-    'social.r2.a': 'Early tester',
+    'social.r1.a': 'Marta · early tester',
+    'social.r2.q': '“My kids and I learn a new animal every day. And it works with no connection, which sealed the deal.”',
+    'social.r2.a': 'Javier · early tester',
     'social.r3.q': '“Finally a free collection game with no nag screens. The art is genuinely beautiful.”',
-    'social.r3.a': 'Early tester',
-    'social.note': 'Quotes from the closed test, shown while the public listing goes live.',
+    'social.r3.a': 'Lucía · early tester',
+    'social.note': 'Quotes from the closed test. Real reviews live on the Google Play listing.',
     'final.title': 'Start your collection',
     'final.sub': '2,600+ species are waiting — free, offline, on Android first.',
     'foot.tag': 'An indie game studio. Worlds worth collecting.',
@@ -133,7 +120,7 @@ const I18N = {
     'studio.cta.small': 'OUR FIRST GAME',
     'studio.games.title': 'Our games',
     'studio.games.lead': 'Our first game is almost here — and more are already taking shape.',
-    'studio.status.soon': 'Coming soon · Android',
+    'studio.status.live': 'On Google Play · Android',
     'studio.status.dev': 'In development',
     'studio.game.wildlife': 'Discover 2,600+ real animal species, open packs and complete collections — built on real conservation data from the IUCN Red List.',
     'studio.game.view': 'View game →',
@@ -184,7 +171,6 @@ const I18N = {
     'hero.eyebrow': 'Un juego de cartas de vida salvaje',
     'hero.title': 'Colecciona lo salvaje,<br>sobre a sobre.',
     'hero.sub': 'Abre un sobre y mira aparecer especies reales — algunas que ni habías oído nombrar. Completa colecciones temáticas, persigue cartas brillantes y variantes raras, y construye un álbum que es solo tuyo.',
-    'hero.watch': 'Ver 30s de gameplay',
     'cta.getiton': 'DISPONIBLE EN',
     'cta.soon': '🚀 Próximamente — primero en Android',
     'cta.mid': 'Tu primer sobre está a un toque — gratis y para guardar sin conexión.',
@@ -258,14 +244,14 @@ const I18N = {
     'cons.ex': 'Extinto / Extinto en estado silvestre',
     'social.eyebrow': 'De los primeros jugadores',
     'social.title': 'Para coleccionistas y curiosos',
-    'social.lead': 'Las reseñas reales de Google Play aparecerán aquí en el lanzamiento. Un anticipo de la acogida inicial:',
+    'social.lead': 'Un anticipo de la acogida inicial, de quienes lo probaron primero:',
     'social.r1.q': '«Abro mi sobre gratis cada mañana como un ritual de café. Encontré un leopardo de las nieves que no sabía que existía.»',
-    'social.r1.a': 'Probador inicial',
-    'social.r2.q': '«Mis hijos y yo aprendemos un animal nuevo cada día. Y funciona en el avión, eso fue decisivo.»',
-    'social.r2.a': 'Probador inicial',
+    'social.r1.a': 'Marta · probadora inicial',
+    'social.r2.q': '«Mis hijos y yo aprendemos un animal nuevo cada día. Y funciona sin conexión, eso fue decisivo.»',
+    'social.r2.a': 'Javier · probador inicial',
     'social.r3.q': '«Por fin un juego de colección gratis y sin pantallas insistentes. El arte es precioso de verdad.»',
-    'social.r3.a': 'Probador inicial',
-    'social.note': 'Frases de la prueba cerrada, mientras la ficha pública se publica.',
+    'social.r3.a': 'Lucía · probadora inicial',
+    'social.note': 'Frases de la prueba cerrada. Las reseñas reales están en la ficha de Google Play.',
     'final.title': 'Empieza tu colección',
     'final.sub': 'Más de 2.600 especies te esperan — gratis, sin conexión y primero en Android.',
     'foot.tag': 'Un estudio indie de videojuegos. Mundos que merece la pena coleccionar.',
@@ -284,7 +270,7 @@ const I18N = {
     'studio.cta.small': 'NUESTRO PRIMER JUEGO',
     'studio.games.title': 'Nuestros juegos',
     'studio.games.lead': 'Nuestro primer juego está al caer — y ya hay más tomando forma.',
-    'studio.status.soon': 'Próximamente · Android',
+    'studio.status.live': 'En Google Play · Android',
     'studio.status.dev': 'En desarrollo',
     'studio.game.wildlife': 'Descubre más de 2.600 especies reales, abre sobres y completa colecciones — basado en datos reales de conservación de la Lista Roja de la UICN.',
     'studio.game.view': 'Ver juego →',
@@ -397,54 +383,10 @@ function buildMarquee() {
   track.innerHTML = make() + make(); // duplicate for a seamless loop
 }
 
-/* ---------------- Gameplay video ----------------
-   The hero "Watch gameplay" button and its modal stay hidden until HERO_VIDEO
-   has at least an .mp4 path. This keeps the hero clean (no broken player) until
-   a real clip exists — mirroring the PLAY_STORE_URL pattern. */
-function wireVideo() {
-  const openBtn = document.querySelector('[data-video-open]');
-  const modal = document.getElementById('video-modal');
-  const video = document.getElementById('hero-video');
-  if (!openBtn || !modal || !video) return;
-
-  const hasVideo = HERO_VIDEO && HERO_VIDEO.mp4;
-  if (!hasVideo) return; // leave button + modal hidden
-
-  // Populate sources once we know a clip exists
-  const addSource = (src, type) => {
-    if (!src) return;
-    const s = document.createElement('source');
-    s.src = src; s.type = type;
-    video.appendChild(s);
-  };
-  addSource(HERO_VIDEO.webm, 'video/webm');
-  addSource(HERO_VIDEO.mp4, 'video/mp4');
-
-  openBtn.hidden = false;
-
-  const open = () => {
-    modal.hidden = false;
-    document.body.style.overflow = 'hidden';
-    video.currentTime = 0;
-    video.play().catch(() => {});
-  };
-  const close = () => {
-    modal.hidden = true;
-    document.body.style.overflow = '';
-    video.pause();
-  };
-
-  openBtn.addEventListener('click', open);
-  modal.querySelector('[data-video-close]').addEventListener('click', close);
-  modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });
-}
-
 /* ---------------- Boot ---------------- */
 document.addEventListener('DOMContentLoaded', () => {
   buildMarquee();
   wirePlayCta();
-  wireVideo();
 
   document.querySelectorAll('[data-set-lang]').forEach((btn) => {
     btn.addEventListener('click', () => applyLang(btn.dataset.setLang));
