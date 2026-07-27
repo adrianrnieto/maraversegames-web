@@ -13,6 +13,7 @@ Live at **maraversegames.com** (once deployed).
 ├── the-wildlife-collection.html   ← full landing for the first game
 ├── 404.html                       ← branded, bilingual not-found page
 ├── privacy.html                   ← privacy-policy placeholder (required for Google Play)
+├── app-ads.txt                    ← AdMob authorised-sellers file (must stay at the root)
 ├── styles.css                     ← all styling (dark, gold-accent theme)
 ├── main.js                        ← i18n dictionary, language toggle, marquee, Play-Store CTA
 └── assets/
@@ -29,6 +30,24 @@ Live at **maraversegames.com** (once deployed).
 - To add a future game (Cosmos, Dinosaurs, Fantasy…): add a card to the games grid in
   `index.html` and a new `<game>.html` page. No restructure needed. When a game gets big
   enough it can graduate to its own subdomain.
+
+## `app-ads.txt`
+
+[`app-ads.txt`](app-ads.txt) declares that Google/AdMob is authorised to sell the ad
+inventory of the Android app. Without it, programmatic buyers filter the app's
+impressions as unauthorised — fewer bidders, lower eCPM — and AdMob raises a warning in
+the console.
+
+```
+google.com, pub-9475965117228543, DIRECT, f08c47fec0942fa0
+```
+
+Two constraints:
+
+- It must be served from the **domain root** (`https://maraversegames.com/app-ads.txt`),
+  so the file stays at the repo root — never move it into a subfolder.
+- AdMob crawls the **developer website declared in the Play Store listing**, so that
+  field must point at `https://maraversegames.com`. A recrawl takes about a day.
 
 ## Run it locally
 
