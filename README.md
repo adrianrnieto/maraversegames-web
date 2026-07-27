@@ -64,9 +64,11 @@ python -m http.server 8000
 1. **Google Play link** — when the store listing is live, paste the URL into
    `PLAY_STORE_URL` at the top of [`main.js`](main.js). Both "Get it on Google Play"
    buttons on the game page activate automatically and the "Launching soon" note hides.
-2. **Privacy policy** — [`privacy.html`](privacy.html) is a draft template. Complete it
-   against the SDKs actually shipped (ads, crash reporting, Play Games). Google Play
-   requires a public privacy-policy URL.
+2. **Privacy policy** — [`privacy.html`](privacy.html) is written against the SDKs the
+   app actually ships (Firebase Analytics + Remote Config, AdMob, Sentry, Cloudflare
+   asset delivery, local notifications). **Revisit it whenever the app adds or drops a
+   service**, and bump the "Last updated" date. Google Play requires a public
+   privacy-policy URL, and it is the URL the AdMob consent message links to.
 
 > Contact email is currently `admin.mara.games@gmail.com`. Once the
 > `maraversegames.com` domain + email are set up, switch it to `contact@maraversegames.com`
