@@ -19,8 +19,24 @@ Live at **maraversegames.com** (once deployed).
 └── assets/
     ├── brand/    ← app icon + favicons
     ├── screens/  ← in-app screenshots (EN + ES)
-    └── marquee/  ← species thumbnails for the scrolling strip
+    ├── games/    ← teaser art for upcoming worlds (prehistory, cosmos, fantasy)
+    ├── marquee/  ← species thumbnails for the scrolling strip
+    └── video/    ← optional hero gameplay clip (see "Two things to set", below)
 ```
+
+## Page sections
+
+**`the-wildlife-collection.html`** (the conversion-focused game landing):
+hero (experience-first copy + optional "Watch gameplay" button) → species marquee →
+headline stats → free/offline band → features → **Chase the rares** (foil-card
+composition) → mid-page CTA → Learn → screen gallery → Conservation → **social proof**
+(placeholder reviews, ready for Google Play) → final CTA.
+
+**`index.html`** (studio hub): hero → marquee → Our games → **The Maraverse** (the four
+universes: Nature · Prehistory · Space · Fantasy) → studio story → final CTA.
+
+All headline numbers, rare-card foils and the world tiles are built from the existing
+WebP assets with CSS — no extra binaries to ship.
 
 ## Structure & how it grows
 
@@ -59,16 +75,24 @@ npx serve .
 python -m http.server 8000
 ```
 
-## Two things to set before launch
+## Two things to keep an eye on
 
-1. **Google Play link** — when the store listing is live, paste the URL into
-   `PLAY_STORE_URL` at the top of [`main.js`](main.js). Both "Get it on Google Play"
-   buttons on the game page activate automatically and the "Launching soon" note hides.
+1. **Google Play link** — the app is live, and `PLAY_STORE_URL` at the top of
+   [`main.js`](main.js) holds the listing URL. Every "Get it on Google Play" button
+   (hero, mid-page and final CTA) picks it up and the "Launching soon" note stays
+   hidden. Clearing the string reverts the whole site to the pre-launch state.
 2. **Privacy policy** — [`privacy.html`](privacy.html) is written against the SDKs the
    app actually ships (Firebase Analytics + Remote Config, AdMob, Sentry, Cloudflare
    asset delivery, local notifications). **Revisit it whenever the app adds or drops a
    service**, and bump the "Last updated" date. Google Play requires a public
    privacy-policy URL, and it is the URL the AdMob consent message links to.
+
+### Social proof
+
+The reviews section on the game page uses **invented placeholder quotes** (`social.*` in
+the `I18N` dictionary), attributed to first names labelled "early tester" so they never
+read as verified Play reviews. Swap the text and attribution for genuine reviews as soon
+as the listing has them — the layout is already in place.
 
 > Contact email is currently `admin.mara.games@gmail.com`. Once the
 > `maraversegames.com` domain + email are set up, switch it to `contact@maraversegames.com`
