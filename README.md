@@ -65,6 +65,43 @@ Two constraints:
 - AdMob crawls the **developer website declared in the Play Store listing**, so that
   field must point at `https://maraversegames.com`. A recrawl takes about a day.
 
+## `sellers.json` & the verified domain
+
+`app-ads.txt` is only one half of the authorised-seller chain: it declares *from the
+publisher's side* that Google may sell this inventory. The other half is Google's own
+[`sellers.json`](https://google.com/sellers.json), where the seller behind
+`pub-9475965117228543` is listed. That entry is controlled in **AdMob → Settings →
+Account → Account controls → Seller information (sellers.json)**, and it is set to:
+
+> **Transparent (maraversegames.com) (verified)**
+
+Transparent publishes the seller name and the domain publicly; the alternative,
+Confidential, hides both, and some programmatic buyers discount or skip confidential
+sellers. The account is an individual one, so the published seller name is the developer's
+legal name — already public in [`privacy.html`](privacy.html), so this adds no new
+exposure.
+
+### The DNS TXT record (in Cloudflare, not in this repo)
+
+AdMob only accepts a domain that is **verified in Google Search Console under the same
+Google account**. `maraversegames.com` is registered there as a **Domain** property
+(covers the apex, `www` and any future subdomain), verified by a TXT record on the apex:
+
+| Type | Name                 | Content                                | Proxy    |
+| ---- | -------------------- | -------------------------------------- | -------- |
+| TXT  | `maraversegames.com` | `google-site-verification=cq9DGmM2bnf…` | DNS only |
+
+It was created through Google's one-time Cloudflare authorisation from the Search Console
+verification screen, so it lives in **Cloudflare DNS** — there is no file in this repo to
+point at, which is why it is written down here.
+
+⚠️ **Never delete that TXT record.** Google revalidates periodically; if the record
+disappears the Search Console property is un-verified, and the domain drops off the
+`sellers.json` entry. Note the apex also carries SPF, DKIM and MX records for email —
+when adding anything, **add a new TXT record, never overwrite an existing one**.
+
+Changes to either setting propagate to `google.com/sellers.json` within about a day.
+
 ## Run it locally
 
 Pure static — open `index.html`, or serve the folder:
