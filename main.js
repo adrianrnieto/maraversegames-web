@@ -379,13 +379,15 @@ function wirePlayCta() {
    (no lazy) so none "pop in" as the strip scrolls. The track holds two copies
    and animates to -50% for a seamless loop. */
 const MARQUEE = [
-  'Lion', 'Jaguar', 'PolarBear', 'ScarletMacaw', 'RedPanda', 'Orca', 'Meerkat',
-  'SnowLeopard', 'GreenSeaTurtle', 'TocoToucan', 'EmperorPenguin', 'Axolotl',
-  'BengalTiger', 'SeaOtter', 'GiantPanda', 'GreaterFlamingo', 'Chimpanzee',
-  'Narwhal', 'PantherChameleon', 'AtlanticPuffin', 'Cheetah', 'BlueWhale',
-  'RingTailedLemur', 'GreatWhiteShark', 'Koala', 'BaldEagle', 'Reindeer',
-  'IndianPeafowl', 'Capybara', 'ArcticFox', 'AfricanBushElephant', 'RedFox',
-  'OcellarisClownfish',
+  'Lion', 'Jaguar', 'PolarBear', 'ScarletMacaw', 'OrchidMantis', 'RedPanda',
+  'Orca', 'Meerkat', 'SnowLeopard', 'AtlasMoth', 'GreenSeaTurtle', 'TocoToucan',
+  'EmperorPenguin', 'Axolotl', 'JewelBeetle', 'BengalTiger', 'SeaOtter',
+  'GiantPanda', 'GreaterFlamingo', 'KingCobra', 'Chimpanzee', 'Narwhal',
+  'PantherChameleon', 'AtlanticPuffin', 'WallacesFlyingFrog', 'Cheetah',
+  'BlueWhale', 'RingTailedLemur', 'GreatWhiteShark', 'KomodoDragon', 'Koala',
+  'BaldEagle', 'Reindeer', 'IndianPeafowl', 'CoconutCrab', 'Capybara',
+  'ArcticFox', 'AfricanBushElephant', 'RedFox', 'AldabraGiantTortoise',
+  'OcellarisClownfish', 'EuropeanBeeEater',
 ];
 function buildMarquee() {
   const track = document.querySelector('.marquee-track');
