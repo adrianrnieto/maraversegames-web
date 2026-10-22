@@ -127,10 +127,13 @@
         <code>Settings › Account</code> as "Connected as …";</li>
       <li>the link to your Play Games profile that Firebase needs to recognise you
         the next time you sign in, and the dates the account was created and last
-        used, which Firebase records for every account.</li>
+        used, which Firebase records for every account;</li>
+      <li>possibly your <strong>Google account email address</strong>. The sign-in
+        library the app uses always asks Google for it, so Google may pass it to
+        Firebase with the account. The app itself does not read, show, or use it.</li>
     </ul>
-    <p>We do not receive your email address, and we do not ask for your phone
-      number or password — the sign-in is handled entirely by Google. To keep the
+    <p>We never ask you for a password or a phone number — the sign-in is handled
+      entirely by Google. To keep the
       sign-in secure and prevent abuse, Firebase Authentication also processes your
       IP address and basic technical information about the app (such as the SDK
       version and device platform) when you sign in.</p>
@@ -212,8 +215,8 @@
 
     <h2>8. Data we do not collect</h2>
     <ul>
-      <li>We do not require an account to play. The optional Play Games sign-in
-        uses your Play Games player name; we never ask for your real name, email, or
+      <li>We do not require an account to play. The optional Play Games sign-in is
+        described in section 2.6; we never ask you to type in your name, email, or
         phone number.</li>
       <li>We do not collect your precise location.</li>
       <li>We do not collect your contacts, photos, or files.</li>

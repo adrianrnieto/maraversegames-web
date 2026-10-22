@@ -20,6 +20,10 @@ Seguridad de los datos (*Data safety*), y tiene que estar enviado y aprobado **a
 publicar 2.4.0. Los nombres de los campos van como aparecen en la consola en inglés; en
 español pueden cambiar un poco.
 
+Decisiones tomadas (22 oct 2026): las páginas legales siguen solo en inglés (Play no
+exige otro idioma); la cuenta se guarda hasta que el jugador la borra, sin caducidad por
+inactividad.
+
 ---
 
 ## 1. Lo que cambia con 2.4.0
@@ -53,8 +57,14 @@ Por qué cada respuesta:
 - **Finalidad.** Hoy solo sirve para enseñar "Conectado como …" y como base del guardado
   en la nube futuro. No se usa para analítica, anuncios ni personalización: el `uid` no va
   a Analytics ni a Sentry (no hay `setUserId` ni `Sentry.setUser` en el código).
-- **No se declaran:** email (Play Games no pide ese alcance y la app no lo lee; confírmalo
-  en Firebase › Authentication › Users, ver preguntas abiertas), teléfono ni foto.
+- **Email: depende de lo que guarde Firebase.** El plugin pide el email a Google
+  (`PlayGamesAuthProviderHandler.java` llama a `.requestEmail()`), aunque la app no lo lee
+  (`toUser` en `src/cloud/auth.ts` se queda solo con `uid` y `displayName`). Después del
+  primer inicio de sesión de prueba, mira en Firebase › Authentication › Users la columna
+  *Identifier*: si sale un email, añade **Personal info › Email address** con las mismas
+  respuestas que User IDs; si sale `-`, no lo declares. La política ya vale para los dos
+  casos ("possibly your Google account email address").
+- **Teléfono y foto:** no se declaran.
 - **La IP que Firebase Auth recoge al iniciar sesión** para evitar abusos no tiene tipo
   propio en Data safety y no se usa para sacar la ubicación, así que no cambia
   *Location*. Está explicada en la política de privacidad (§2.6).
