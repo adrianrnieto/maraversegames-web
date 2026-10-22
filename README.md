@@ -5,7 +5,7 @@ dependency-free — just static `HTML/CSS/JS`, no build step, no framework. Bili
 (English / Español) with a live language toggle. Built as a **studio hub that leads with
 the first game**, so new titles slot in without a rewrite.
 
-Live at **maraversegames.com** (once deployed).
+Live at **[maraversegames.com](https://maraversegames.com)**.
 
 ```
 .
