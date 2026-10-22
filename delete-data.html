@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Deletion — Wildlife Collection</title>
+  <title>Account and Data Deletion — Wildlife Collection</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
@@ -11,8 +11,10 @@
     .legal { max-width: 760px; margin: 0 auto; padding: 4rem 1.25rem; }
     .legal h1 { font-family: 'Poppins', sans-serif; font-size: 2rem; margin-bottom: 0.5rem; }
     .legal h2 { font-family: 'Poppins', sans-serif; font-size: 1.2rem; margin: 2rem 0 0.5rem; }
+    .legal h3 { font-family: 'Poppins', sans-serif; font-size: 1rem; margin: 1.5rem 0 0.35rem; }
     .legal p, .legal li { color: var(--muted); }
     .legal ul, .legal ol { padding-left: 1.2rem; margin-top: 0.5rem; }
+    .legal li { margin-bottom: 0.35rem; }
     .legal a { color: var(--gold-2); }
     .back { display: inline-block; margin-bottom: 1.5rem; color: var(--muted); }
   </style>
@@ -20,28 +22,75 @@
 <body>
   <div class="legal">
     <a class="back" href="index.html">← Back</a>
-    <h1>Data Deletion Request</h1>
-    <p>Wildlife Collection · Last updated: 2 July 2026</p>
+    <h1>Account and Data Deletion</h1>
+    <p>Wildlife Collection by Maraverse Games · Last updated: 22 October 2026</p>
 
-    <p>Wildlife Collection is a single-player game that does not use accounts.
-      This page explains how to delete the two kinds of data associated with the app.</p>
+    <p>This page explains how to delete your <strong>Wildlife Collection</strong>
+      account and the data associated with the app, published on Google Play by
+      <strong>Maraverse Games</strong>. You do not need to reinstall the app to ask
+      for deletion: the email route below works without it.</p>
 
-    <h2>1. Your game data (on your device)</h2>
+    <h2 id="account">1. Your Play Games sign-in account</h2>
+    <p>If you signed in with <strong>Google Play Games</strong>, the app created an
+      account for you in Firebase Authentication (a Google service). It holds a
+      pseudonymous user ID, your Play Games player name, the link to your Play Games
+      profile, and the dates the account was created and last used. No game progress
+      is stored in it.</p>
+
+    <h3>Delete it in the app</h3>
+    <ol>
+      <li>Open Wildlife Collection.</li>
+      <li>Go to <code>Settings › Account</code>.</li>
+      <li>Tap <strong>Delete cloud account</strong> and confirm with
+        <strong>Delete</strong>.</li>
+    </ol>
+    <p>The account is deleted straight away. If the app asks you to sign in with
+      Play Games once more, that is Google confirming it is you before the account
+      can be deleted.</p>
+
+    <h3>Or ask us by email</h3>
+    <p>If you no longer have the app, or the in-app option does not work for you,
+      email <a href="mailto:support@maraversegames.com?subject=Account%20deletion%20request">support@maraversegames.com</a>
+      with the subject "Account deletion request" and include your
+      <strong>Play Games player name</strong> (shown in the app as
+      "Connected as …", and in the Google Play Games app on your profile). If you
+      still have the app, you can also include the data ID from
+      <code>Settings › Privacy</code>. We will delete the account and confirm by
+      email within one month. We may ask you a question to make sure the request
+      comes from the account's owner.</p>
+
+    <h3>What is deleted and what is kept</h3>
+    <ul>
+      <li><strong>Deleted:</strong> the Firebase account — the user ID, your Play
+        Games player name, and the link to your Play Games profile. It is removed
+        from Firebase Authentication straight away; any residual copies in Google's
+        systems are removed according to Google's own deletion timelines.</li>
+      <li><strong>Not affected:</strong> your game on the device. Your collection,
+        coins, and progress stay exactly as they are, because they were never part
+        of the account. To delete them too, see section 2.</li>
+      <li><strong>Not affected:</strong> your Google account and your Play Games
+        profile. Those belong to Google, and you manage them in your Google account
+        settings.</li>
+    </ul>
+    <p>Uninstalling the app does <strong>not</strong> delete the account. Unless you
+      delete it, it is kept so that it can identify you on another device.</p>
+
+    <h2>2. Your game data (on your device)</h2>
     <p>Your entire game progress — collection, coins, quests, achievements, streaks,
       and settings — is stored only on your device. To delete all of it, simply
       <strong>uninstall the app</strong>, or clear its storage in
       <code>Settings › Apps › Wildlife Collection › Storage › Clear data</code>.
       We never receive a copy, so there is nothing for us to delete on our side.</p>
 
-    <h2>2. Data collected by third-party services</h2>
-    <p>The app sends a limited amount of pseudonymous data to third parties to run and improve the game: anonymous usage analytics (Google Analytics for Firebase), rewarded-ads data including the advertising identifier (Google AdMob), and crash diagnostics (Sentry). This data is not linked to your name or any account.</p>
+    <h2>3. Data collected by third-party services</h2>
+    <p>The app sends a limited amount of pseudonymous data to third parties to run and improve the game: anonymous usage analytics (Google Analytics for Firebase), rewarded-ads data including the advertising identifier (Google AdMob), and crash diagnostics (Sentry). This data is not linked to your name or to your sign-in account.</p>
     <p>Because it isn't tied to an account, the most reliable way to remove it is directly from your device:</p>
     <ul>
       <li><strong>Clear the app's data or uninstall it.</strong> This wipes all on-device data and resets the app's analytics identifier, so future analytics are no longer linked to your device.</li>
       <li><strong>Reset or delete your advertising ID</strong> in <code>Settings › Privacy › Ads</code>. This stops ads data being associated with your device.</li>
     </ul>
     <p>The pseudonymous data already collected is automatically deleted under each service's data-retention limits. If you would still like us to remove specific records, email <a href="mailto:support@maraversegames.com">support@maraversegames.com</a> and include your in-app data ID (see below); because this data has no account attached, we will delete whatever we can identify.</p>
-    <p>You can find your in-app data ID in the game under <code>Settings › Privacy</code>. Including it in your email lets us locate and delete the analytics records for your installation.</p>
+    <p>You can find your in-app data ID in the game under <code>Settings › Privacy</code>, where <strong>Request data deletion</strong> also opens an email to us with the ID already filled in. Including it lets us locate and delete the analytics records for your installation.</p>
 
     <h2>Contact</h2>
     <p>Questions? Email

@@ -12,7 +12,10 @@ Live at **maraversegames.com** (once deployed).
 ├── index.html                     ← STUDIO HOME (Maraverse Games hub + "Our games" grid)
 ├── the-wildlife-collection.html   ← full landing for the first game
 ├── 404.html                       ← branded, bilingual not-found page
-├── privacy.html                   ← privacy-policy placeholder (required for Google Play)
+├── privacy.html                   ← privacy policy (required for Google Play)
+├── delete-data.html               ← account & data deletion (Play's "Delete account URL")
+├── _redirects                     ← keeps docs/ off the live site
+├── docs/                          ← internal notes, not served (e.g. play-data-safety.md)
 ├── app-ads.txt                    ← AdMob authorised-sellers file (must stay at the root)
 ├── styles.css                     ← all styling (dark, gold-accent theme)
 ├── main.js                        ← i18n dictionary, language toggle, marquee, Play-Store CTA
@@ -119,9 +122,11 @@ python -m http.server 8000
    (hero, mid-page and final CTA) picks it up and the "Launching soon" note stays
    hidden. Clearing the string reverts the whole site to the pre-launch state.
 2. **Privacy policy** — [`privacy.html`](privacy.html) is written against the SDKs the
-   app actually ships (Firebase Analytics + Remote Config, AdMob, Sentry, Cloudflare
-   asset delivery, local notifications). **Revisit it whenever the app adds or drops a
-   service**, and bump the "Last updated" date. Google Play requires a public
+   app actually ships (Firebase Analytics + Remote Config, Firebase Authentication with
+   Play Games sign-in, AdMob, Sentry, Cloudflare asset delivery, local notifications).
+   **Revisit it whenever the app adds or drops a service**, and bump the "Last updated"
+   date. Keep [`delete-data.html`](delete-data.html) and the Play Data safety notes in
+   [`docs/play-data-safety.md`](docs/play-data-safety.md) in step with it. Google Play requires a public
    privacy-policy URL, and it is the URL the AdMob consent message links to.
 
 ### Social proof
