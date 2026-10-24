@@ -1,0 +1,2 @@
+# Internal notes live in docs/ — Pages serves the repo root, so keep them off the site.
+/docs/* / 302
