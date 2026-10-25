@@ -23,15 +23,16 @@
   <div class="legal">
     <a class="back" href="index.html">← Back</a>
     <h1>Privacy Policy</h1>
-    <p>Wildlife Collection · Last updated: 22 October 2026</p>
+    <p>Wildlife Collection · Last updated: 26 October 2026</p>
 
     <p>This Privacy Policy explains how <strong>Wildlife Collection</strong>
       ("the app", "we", "us"), published by Maraverse Games, handles your
       information. The app is a single-player wildlife card-collecting game for
-      Android. Your game progress stays on your device; the only information that
+      Android. Your game progress is stored on your device. The only information that
       leaves it is the limited, pseudonymous data described below, used to keep the
-      app running, improve it, show rewarded ads, and — if you choose to sign in —
-      identify you with Google Play Games.</p>
+      app running, improve it and show rewarded ads — and, if you choose to sign in
+      with Google Play Games, an account and a backup copy of your game progress in
+      the cloud (sections 2.6 and 2.7).</p>
 
     <p>For the purposes of the EU/UK General Data Protection Regulation, the data
       controller is <strong>Adrián Rodríguez Nieto</strong>, an individual developer
@@ -41,11 +42,14 @@
     <h2>1. Data stored on your device</h2>
     <p>All of your game progress — your collection, coins, quests, achievements,
       streaks, and settings — is stored <strong>locally on your device</strong> in
-      the app's private storage. This data never leaves your device unless you
-      explicitly export it yourself (see "Exporting your data" below). We do not run
-      a game server and we cannot see, access, or recover your game progress. Signing
-      in with Google Play Games (section 2.6) does not change this: no game progress
-      is uploaded to the cloud.</p>
+      the app's private storage, and the game always runs from that copy. We do not
+      run our own game server.</p>
+    <p><strong>If you do not sign in with Google Play Games</strong>, this data never
+      leaves your device unless you explicitly export it yourself (see "Exporting
+      your data" below), and we cannot see, access, or recover it.</p>
+    <p><strong>If you sign in</strong>, the app also keeps a backup copy of your game
+      progress in the cloud so that you can restore it on a new device or after a
+      reinstall. This is described in section 2.7.</p>
 
     <h2>2. What the app sends, and why</h2>
 
@@ -137,20 +141,18 @@
       sign-in secure and prevent abuse, Firebase Authentication also processes your
       IP address and basic technical information about the app (such as the SDK
       version and device platform) when you sign in.</p>
-    <p><strong>What it is for:</strong> identifying you as a player so that a
-      future version of the app can back up your game progress to the cloud and
-      restore it on a new device. <strong>Today no game progress is uploaded</strong>:
-      the account is only used to show you that you are connected. If cloud backup
-      is added, we will update this policy before it ships. The account ID is not
-      attached to the analytics, advertising, or crash-diagnostic data described
-      above.</p>
+    <p><strong>What it is for:</strong> identifying you as a player, to show
+      you that you are connected and to link your cloud save (section 2.7) to you.
+      The account ID is not attached to the analytics, advertising, or
+      crash-diagnostic data described above.</p>
     <p><strong>It is optional.</strong> The app offers the Play Games sign-in when
       it starts. If you dismiss it, decline it, or it fails, you can keep playing
       exactly as before, and the app does not ask again on its own; you can connect
       later from <code>Settings › Account</code>.</p>
     <p><strong>Deleting the account:</strong> open <code>Settings › Account</code>
-      and tap <strong>Delete cloud account</strong>. This deletes the Firebase account
-      (the user ID and player name above). The game on your device is not affected:
+      and tap <strong>Delete cloud account</strong>. This deletes your cloud save and
+      its copies (section 2.7) and then the Firebase account (the user ID and player
+      name above). The game on your device is not affected:
       your collection, coins, and progress stay exactly as they are. After deleting,
       the app will not sign you in again unless you tap <em>Connect</em>, which
       creates a new account. You can also ask us to delete it by email — see our
@@ -161,6 +163,55 @@
       <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.
       Your use of Google Play Games itself is governed by Google's terms and
       policies.</p>
+
+    <h3>2.7 Cloud save</h3>
+    <p>While you are signed in with Google Play Games, the app keeps a backup copy of
+      your game in <strong>Cloud Firestore</strong> (a Google service, part of
+      Firebase), in a database located in the European Union. There is one save per
+      account, stored under your user ID (section 2.6). It contains:</p>
+    <ul>
+      <li>your <strong>game progress</strong>: the same data described in section 1 —
+        your collection, coins, experience and level, packs opened, quests,
+        achievements, streaks, activity history and settings — packed into a single
+        compressed block;</li>
+      <li>the <strong>profile name</strong> and avatar you chose in the game, if any
+        (a name you type yourself in the app, not your Play Games name), and a short
+        summary of the save in plain fields: number of cards, experience, coins,
+        packs opened and weekly trivia points;</li>
+      <li>technical details: the save format and app version that wrote it, the time
+        it was written, and a random identifier of the installation that wrote it.</li>
+    </ul>
+    <p>Your Play Games player name and email address are not part of the cloud save;
+      they are held only by Firebase Authentication (section 2.6).</p>
+    <p><strong>When it is uploaded.</strong> Automatically, without a separate
+      prompt, whenever you are signed in and your game has changed since the last
+      upload — when the app goes to the background and periodically while it runs,
+      but at most about once an hour. <strong>When it is downloaded.</strong> Only
+      when you are signed in for the first time on an installation, or when you tap
+      <code>Load cloud save</code> in <code>Settings › Account</code>. On a new or
+      reinstalled app with no progress, the cloud save is restored automatically. If
+      the device and the cloud both hold progress, the app uploads nothing and
+      restores nothing until you choose which one to keep.</p>
+    <p><strong>Previous copies.</strong> Before an upload, the app keeps the
+      state that was in the cloud as a <em>daily</em> copy and, from that, a
+      <em>weekly</em> copy (so at most three documents per player, each replacing the
+      older one). They exist only so that we can help recover a game if a bug damages
+      a save; there is no button for them in the app.</p>
+    <p><strong>What it is for.</strong> Backing up and restoring your game, and
+      support. It is not used for analytics, advertising or profiling, and it is not
+      shared with anyone other than Google as our service provider. The app's
+      security rules let only the signed-in account read or write its own save. We
+      can open a stored save from the Firebase console, for example to help you
+      recover a game, and we do not do so otherwise.</p>
+    <p><strong>How long it is kept.</strong> Until you delete your cloud account.
+      There is no automatic expiry, and uninstalling the app does <strong>not</strong>
+      delete it. <strong>Deleting it:</strong> <code>Settings › Account › Delete
+      cloud account</code> first deletes the save and its daily and weekly copies,
+      then the account. If the save cannot be deleted (for example, you are offline),
+      the account is not deleted either and the app tells you, so you can try again.
+      After that the app does not upload again unless you tap <em>Connect</em>, which
+      starts a new account with no cloud save. Your game on the device is not
+      affected.</p>
 
     <h2>3. Legal bases (EEA and UK users)</h2>
     <ul>
@@ -173,31 +224,34 @@
         this, and never data that identifies you personally.</li>
       <li><strong>Performance of a contract</strong> — providing the game itself,
         including the on-device data that makes it work, and the Google Play Games
-        sign-in when you choose to use it.</li>
+        sign-in and cloud save when you choose to use them.</li>
     </ul>
 
     <h2>4. Sharing and international transfers</h2>
     <p>We do not sell your personal information and we do not share it with anyone
       beyond the service providers named in this policy: Google (Firebase Analytics,
-      Remote Config, Firebase Authentication, AdMob, Google Play and Google Play
-      Games), Sentry, and Cloudflare. Those providers may
+      Remote Config, Firebase Authentication, Cloud Firestore, AdMob, Google Play
+      and Google Play Games), Sentry, and Cloudflare. Those providers may
       process data on servers outside the European Economic Area, including in the
       United States. Where that happens, the transfer relies on the safeguards each
       provider offers, such as the European Commission's Standard Contractual Clauses
       and, where applicable, the EU–US Data Privacy Framework.</p>
 
     <h2>5. How long data is kept</h2>
-    <p>Game progress stays on your device until you delete it. Analytics, ads, and
+    <p>Game progress stays on your device until you delete it; if you use the cloud
+      save, a copy is kept in the cloud as described below. Analytics, ads, and
       diagnostic data are kept only for the retention periods configured in each
       service, after which they are deleted automatically. Because none of it is
       attached to your account, clearing the app's data or uninstalling the app resets
       the identifiers that link it to your installation.</p>
-    <p>Your Play Games sign-in account (section 2.6) is kept until you delete it —
-      from <code>Settings › Account</code> or by asking us — because it is what will
-      let you recover your progress on a new device. Uninstalling the app does
-      <strong>not</strong> delete it. When it is deleted, it is removed from Firebase
-      Authentication straight away; any residual copies in Google's systems are
-      removed according to Google's own deletion timelines.</p>
+    <p>Your Play Games sign-in account (section 2.6) and your cloud save with its
+      daily and weekly copies (section 2.7) are kept until you delete them — from
+      <code>Settings › Account</code> or by asking us — because they are what let you
+      recover your progress on a new device. They do not expire on their own, and
+      uninstalling the app does <strong>not</strong> delete them. When they are
+      deleted, they are removed from Firebase Authentication and Cloud Firestore
+      straight away; any residual copies in Google's systems are removed according to
+      Google's own deletion timelines.</p>
 
     <h2>6. Notifications</h2>
     <p>With your permission, the app schedules <strong>local notifications</strong>
@@ -215,9 +269,10 @@
 
     <h2>8. Data we do not collect</h2>
     <ul>
-      <li>We do not require an account to play. The optional Play Games sign-in is
-        described in section 2.6; we never ask you to type in your name, email, or
-        phone number.</li>
+      <li>We do not require an account to play. The optional Play Games sign-in and
+        cloud save are described in sections 2.6 and 2.7; we never ask you for your
+        email, phone number or a password. The only name you can type is an optional
+        in-game profile name, which is part of your cloud save if you use it.</li>
       <li>We do not collect your precise location.</li>
       <li>We do not collect your contacts, photos, or files.</li>
       <li>We do not use push notifications or send you marketing messages.</li>
@@ -233,7 +288,7 @@
     <p>The data described here is pseudonymous and we cannot connect it to you by
       name. To let us find your records, include the data ID shown in the app under
       <code>Settings › Privacy</code> (for analytics) and, if you signed in, your Play
-      Games player name (for your sign-in account) when you write to
+      Games player name (for your sign-in account and cloud save) when you write to
       <a href="mailto:support@maraversegames.com">support@maraversegames.com</a>. We
       will respond within one month. Practical steps you can take yourself are listed
       on our <a href="delete-data.html">Account and Data Deletion</a> page.</p>
@@ -254,10 +309,12 @@
       will delete it.</p>
 
     <h2>11. Deleting your data</h2>
-    <p>Your game progress lives only on your device — uninstalling the app or
-      clearing its storage removes it entirely. To delete your Play Games sign-in
-      account, use <code>Settings › Account › Delete cloud account</code>. To request
-      deletion of that account without the app, or of the limited data collected by
+    <p>Your game progress lives on your device — uninstalling the app or clearing its
+      storage removes that copy — and, if you signed in, also in your cloud save,
+      which uninstalling does not remove. To delete your Play Games sign-in account
+      together with your cloud save, use <code>Settings › Account › Delete cloud
+      account</code>. To request deletion of that account and save without the app,
+      or of the limited data collected by
       third-party services (analytics, ads, crash diagnostics), see our
       <a href="delete-data.html">Account and Data Deletion</a> page.</p>
 

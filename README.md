@@ -123,7 +123,7 @@ python -m http.server 8000
    hidden. Clearing the string reverts the whole site to the pre-launch state.
 2. **Privacy policy** — [`privacy.html`](privacy.html) is written against the SDKs the
    app actually ships (Firebase Analytics + Remote Config, Firebase Authentication with
-   Play Games sign-in, AdMob, Sentry, Cloudflare asset delivery, local notifications).
+   Play Games sign-in, Firestore cloud save, AdMob, Sentry, Cloudflare asset delivery, local notifications).
    **Revisit it whenever the app adds or drops a service**, and bump the "Last updated"
    date. Keep [`delete-data.html`](delete-data.html) and the Play Data safety notes in
    [`docs/play-data-safety.md`](docs/play-data-safety.md) in step with it. Google Play requires a public

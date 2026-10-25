@@ -1,4 +1,4 @@
-# Play Console — Data safety y borrado de cuenta (Wildlife Collection 2.4.0)
+# Play Console — Data safety y borrado de cuenta (Wildlife Collection 2.4.0, con guardado en la nube)
 
 > Notas internas, **no se publican**: `_redirects` manda `/docs/*` a la portada, porque
 > Cloudflare Pages sirve la raíz del repo. El repo es público en GitHub, así que esto se
@@ -8,7 +8,11 @@ La release 2.4.0 añade el inicio de sesión con Google Play Games (PR
 adrianrnieto/Wildlifecollection#768, `@capacitor-firebase/authentication` 8.3.0). Crea un
 usuario de Firebase Auth con un `uid` seudónimo y el nombre de jugador de Play Games, lo
 enseña en **Ajustes › Cuenta** ("Conectado como …") y permite borrarlo con **Borrar cuenta
-en la nube**. **No se sube ninguna partida**: Firestore es la fase 3 (2.5.0).
+en la nube**. Desde la fase 3 (PR
+adrianrnieto/Wildlifecollection#790, `docs/architecture/cloud-save.md`) la partida
+también se sube a Firestore mientras el jugador está conectado. Las dos fases salen en
+**una misma release** (detrás de `VITE_CLOUD_AUTH`), así que **Data safety se rellena una
+sola vez con todo lo de abajo, §1 y §4 juntos**.
 
 Fuentes: en Wildlifecollection, `docs/architecture/cloud-identity.md`, `src/cloud/auth.ts`,
 `src/cloud/identity.ts`, `docs/architecture/analytics.md` y
@@ -19,6 +23,8 @@ Todo esto se rellena **a mano** en Play Console › Contenido de la app (*App co
 Seguridad de los datos (*Data safety*), y tiene que estar enviado y aprobado **antes** de
 publicar 2.4.0. Los nombres de los campos van como aparecen en la consola en inglés; en
 español pueden cambiar un poco.
+
+Actualizado el 26 oct 2026 para la fase 3 (guardado en Firestore).
 
 Decisiones tomadas (22 oct 2026): las páginas legales siguen solo en inglés (Play no
 exige otro idioma); la cuenta se guarda hasta que el jugador la borra, sin caducidad por
@@ -54,8 +60,7 @@ Por qué cada respuesta:
   rechaza o falla, sigue jugando y la app no vuelve a preguntar sola. El bloqueo
   (`cloud_signin_required`) sale **apagado** (`0`). **Si alguna vez se pone a `1`, hay que
   cambiar estos dos tipos a *Required* y reenviar Data safety antes de activarlo.**
-- **Finalidad.** Hoy solo sirve para enseñar "Conectado como …" y como base del guardado
-  en la nube futuro. No se usa para analítica, anuncios ni personalización: el `uid` no va
+- **Finalidad.** Enseñar "Conectado como …" y ligar el guardado en la nube (§4) al jugador. No se usa para analítica, anuncios ni personalización: el `uid` no va
   a Analytics ni a Sentry (no hay `setUserId` ni `Sentry.setUser` en el código).
 - **Email: depende de lo que guarde Firebase.** El plugin pide el email a Google
   (`PlayGamesAuthProviderHandler.java` llama a `.requestEmail()`), aunque la app no lo lee
@@ -68,7 +73,7 @@ Por qué cada respuesta:
 - **La IP que Firebase Auth recoge al iniciar sesión** para evitar abusos no tiene tipo
   propio en Data safety y no se usa para sacar la ubicación, así que no cambia
   *Location*. Está explicada en la política de privacidad (§2.6).
-- **Game progress no se declara todavía.** En 2.4.0 no sale del dispositivo.
+- **El progreso de juego sí se declara ahora:** ver §4.
 
 ---
 
@@ -109,7 +114,7 @@ deduce de la IP se declara o no, y qué finalidades exactas tiene AdMob. Sigue
   - Da los pasos dentro de la app (Ajustes › Cuenta › Borrar cuenta en la nube).
   - Ofrece una vía **sin la app y sin reinstalarla**: un email a
     support@maraversegames.com con el nombre de jugador de Play Games.
-  - Dice qué se borra (la cuenta de Firebase: `uid`, nombre, vínculo con Play Games), qué
+  - Dice qué se borra (la cuenta de Firebase: `uid`, nombre, vínculo con Play Games, y la partida en la nube con sus copias), qué
     se queda (la partida del dispositivo, la cuenta de Google) y en qué plazo (al momento
     en Firebase, y en menos de un mes si se pide por email).
 
@@ -121,22 +126,44 @@ teléfono), y un usuario de Play Games no tiene email. Por eso:
 1. `firebase auth:export users.json --project wildlife-collection` y busca el
    `displayName` que te ha dado el jugador.
 2. Pega ese `uid` en el buscador de Firebase › Authentication › Users y borra el usuario.
-3. Si te manda también el data ID, borra la analítica como hasta ahora.
-4. Contesta en menos de un mes. Borra el `users.json` exportado.
+3. **Borra también la partida** en Firebase › Firestore: los documentos con ese `uid`
+   como id en `saves`, `saves_daily` y `saves_weekly`. Hazlo **antes** de borrar el usuario
+   si te es cómodo; las reglas solo dejan al propietario borrar desde la app, pero la
+   consola de administrador puede borrarlos en cualquier momento.
+4. Si te manda también el data ID, borra la analítica como hasta ahora.
+5. Contesta en menos de un mes. Borra el `users.json` exportado.
 
 Si dos cuentas tienen el mismo nombre, pregunta algo antes de borrar: el país aproximado,
 la fecha en que empezó a jugar, etc.
 
 ---
 
-## 4. Cuando llegue la fase 3 (2.5.0, guardado en Firestore)
+## 4. Guardado en la nube (fase 3, Firestore)
 
-No es para esta release, pero apúntalo:
+Qué sube la app (`docs/architecture/cloud-save.md`): un documento `saves/{uid}` con la
+partida entera (sobre firmado del export, gzip + base64), un `summary` en claro (cartas,
+XP, monedas, packs abiertos, **nombre de perfil** y avatar, puntos de quiz), la versión de
+formato y de app, la hora del servidor y un id aleatorio de instalación. Además una copia
+diaria y otra semanal (`saves_daily`, `saves_weekly`). El nombre de Play Games **no** va a
+Firestore (solo a Firebase Auth). Se sube solo, sin opt-in aparte, mientras haya sesión.
 
-- Declarar el **progreso de juego** subido a `saves/{uid}` (probablemente *App activity ›
-  Other user-generated content* u *Other actions*; elige al rellenarlo), Collected, no
-  Shared, App functionality.
-- Al borrar la cuenta hay que borrar también el documento de Firestore. La regla
-  `allow delete` ya está en el diseño, pero `deleteCloudAccount()` todavía no lo hace.
-  Actualizar entonces la política, la página de borrado y este fichero.
-- Si `cloud_signin_required` pasa a `1`, User IDs y Name pasan a *Required*.
+| Categoría › tipo | Collected | Shared | ¿Efímero? | ¿Obligatorio u opcional? | Finalidades |
+|---|---|---|---|---|---|
+| **App activity › Other actions** (o *Other user-generated content*; Play no tiene un tipo "game progress", elige el que mejor encaje al rellenarlo) | **Yes**: progreso del juego | **No** | No | **Optional** (solo si el jugador se conecta) | **App functionality** |
+| **Personal info › User IDs** (ya añadido en §1) | Yes | No | No | Optional | App functionality, Account management |
+| **Personal info › Name** (ya añadido en §1) | Yes: ahora cubre también el **nombre de perfil** que el jugador escribe en el juego, además del nombre de Play Games | No | No | Optional | App functionality, Account management |
+
+- **Shared = No**: Google/Firebase lo trata como proveedor de servicio; no hay otro destinatario.
+- **Cifrado en tránsito:** Sí (Firestore va por HTTPS/gRPC con TLS). El payload no está
+  cifrado por nosotros, solo comprimido: no lo describas como "cifrado de extremo a extremo".
+- **Retención / borrado:** hasta que el jugador borra la cuenta; sin TTL ni caducidad por
+  inactividad. *Borrar cuenta en la nube* **borra primero** la partida y sus copias diaria
+  y semanal (`deleteCloudData`, un batch) y **después** el usuario de Auth; si lo primero
+  falla, no se borra la cuenta. Por tanto la respuesta a "¿puede el usuario pedir el
+  borrado?" sigue siendo Sí y la URL de borrado (§3) cubre también la partida.
+- Si `cloud_signin_required` pasa a `1`, User IDs, Name y el progreso pasan a *Required*
+  (reenviar Data safety antes de activarlo).
+
+Región de Firestore: el diseño pide `eur3` (o una región europea única) y es irreversible,
+pero el código no la fija; **confirma en Firebase › Firestore que es europea** (la política
+dice "located in the European Union").
