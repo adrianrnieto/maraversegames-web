@@ -126,12 +126,16 @@ teléfono), y un usuario de Play Games no tiene email. Por eso:
 1. `firebase auth:export users.json --project wildlife-collection` y busca el
    `displayName` que te ha dado el jugador.
 2. Pega ese `uid` en el buscador de Firebase › Authentication › Users y borra el usuario.
+   **Primero el usuario**: así el móvil ya no puede renovar su token.
 3. **Borra también la partida** en Firebase › Firestore: los documentos con ese `uid`
-   como id en `saves`, `saves_daily` y `saves_weekly`. Hazlo **antes** de borrar el usuario
-   si te es cómodo; las reglas solo dejan al propietario borrar desde la app, pero la
-   consola de administrador puede borrarlos en cualquier momento.
-4. Si te manda también el data ID, borra la analítica como hasta ahora.
-5. Contesta en menos de un mes. Borra el `users.json` exportado.
+   como id en `saves`, `saves_daily` y `saves_weekly` (la consola de administrador puede
+   borrarlos aunque las reglas solo dejen al propietario hacerlo desde la app).
+4. **Vuelve a mirar pasada al menos una hora** y borra cualquiera de esos documentos que
+   haya reaparecido. Si el jugador sigue conectado en un móvil, su token de Firebase vale
+   hasta una hora después de borrar el usuario (las reglas de Firestore no comprueban si
+   se ha revocado) y la app puede volver a subir la partida en ese tiempo.
+5. Si te manda también el data ID, borra la analítica como hasta ahora.
+6. Contesta en menos de un mes, después del paso 4. Borra el `users.json` exportado.
 
 Si dos cuentas tienen el mismo nombre, pregunta algo antes de borrar: el país aproximado,
 la fecha en que empezó a jugar, etc.
