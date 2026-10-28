@@ -23,7 +23,7 @@
   <div class="legal">
     <a class="back" href="index.html">← Back</a>
     <h1>Account and Data Deletion</h1>
-    <p>Wildlife Collection by Maraverse Games · Last updated: 26 October 2026</p>
+    <p>Wildlife Collection by Maraverse Games · Last updated: 28 October 2026</p>
 
     <p>This page explains how to delete your <strong>Wildlife Collection</strong>
       account and the data associated with the app, published on Google Play by
@@ -40,7 +40,9 @@
       copy of your game progress in the cloud (Cloud Firestore, a Google service): your
       collection, coins, quests, achievements and settings, your in-game profile name
       if you set one, and a daily and a weekly copy of it for recovery (section 2.7 of
-      the Privacy Policy). Deleting your account deletes all of it.</p>
+      the Privacy Policy), and your entry in the leaderboard, which other signed-in
+      players can see: your profile name, avatar, number of cards and experience
+      points (section 2.8). Deleting your account deletes all of it.</p>
 
     <h3>Delete it in the app</h3>
     <ol>
@@ -49,8 +51,8 @@
       <li>Tap <strong>Delete cloud account</strong> and confirm with
         <strong>Delete</strong>.</li>
     </ol>
-    <p>The app first deletes your cloud save and its daily and weekly copies, then the
-      account, straight away. If the save cannot be deleted (for example, you are
+    <p>The app first deletes your cloud save, its daily and weekly copies and your
+      leaderboard entry, then the account, straight away. If the save cannot be deleted (for example, you are
       offline), the account is not deleted either and the app tells you, so you can
       try again. If the app asks you to sign in with
       Play Games once more, that is Google confirming it is you before the account
@@ -63,8 +65,8 @@
       <strong>Play Games player name</strong> (shown in the app as
       "Connected as …", and in the Google Play Games app on your profile). If you
       still have the app, you can also include the data ID from
-      <code>Settings › Privacy</code>. We will delete the account together with your cloud save and its
-      copies, and confirm by email within one month. We may ask you a question to make sure the request
+      <code>Settings › Privacy</code>. We will delete the account together with your cloud save, its
+      copies and your leaderboard entry, and confirm by email within one month. We may ask you a question to make sure the request
       comes from the account's owner.</p>
 
     <h3>What is deleted and what is kept</h3>
@@ -72,7 +74,8 @@
       <li><strong>Deleted:</strong> the Firebase account — the user ID, your Play
         Games player name, the link to your Play Games profile, and the email address
         if Google provided one — and your cloud save with its daily and weekly
-        copies, including the in-game profile name stored in them. They are removed
+        copies, including the in-game profile name stored in them, and your
+        leaderboard entry. They are removed
         from Firebase Authentication and Cloud Firestore straight away; any residual
         copies in Google's systems are removed according to Google's own deletion
         timelines.</li>
@@ -84,7 +87,7 @@
         settings.</li>
     </ul>
     <p>Uninstalling the app does <strong>not</strong> delete the account. Unless you
-      delete it, the account and your cloud save are kept, with no automatic expiry,
+      delete it, the account, your cloud save and your leaderboard entry are kept, with no automatic expiry,
       so that you can recover your game on another device.</p>
 
     <h2>2. Your game data (on your device)</h2>
