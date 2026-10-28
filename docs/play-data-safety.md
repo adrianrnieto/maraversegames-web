@@ -24,7 +24,8 @@ Seguridad de los datos (*Data safety*), y tiene que estar enviado y aprobado **a
 publicar 2.4.0. Los nombres de los campos van como aparecen en la consola en inglés; en
 español pueden cambiar un poco.
 
-Actualizado el 26 oct 2026 para la fase 3 (guardado en Firestore).
+Actualizado el 26 oct 2026 para la fase 3 (guardado en Firestore), y el 28 oct 2026 para
+la clasificación (§5).
 
 Decisiones tomadas (22 oct 2026): las páginas legales siguen solo en inglés (Play no
 exige otro idioma); la cuenta se guarda hasta que el jugador la borra, sin caducidad por
@@ -127,8 +128,9 @@ teléfono), y un usuario de Play Games no tiene email. Por eso:
    `displayName` que te ha dado el jugador.
 2. Pega ese `uid` en el buscador de Firebase › Authentication › Users y borra el usuario.
    **Primero el usuario**: así el móvil ya no puede renovar su token.
-3. **Borra también la partida** en Firebase › Firestore: los documentos con ese `uid`
-   como id en `saves`, `saves_daily` y `saves_weekly` (la consola de administrador puede
+3. **Borra también la partida y la entrada de la clasificación** en Firebase › Firestore:
+   los documentos con ese `uid` como id en `saves`, `saves_daily`, `saves_weekly` y
+   `xp_ranking` (la consola de administrador puede
    borrarlos aunque las reglas solo dejen al propietario hacerlo desde la app).
 4. **Vuelve a mirar pasada al menos una hora** y borra cualquiera de esos documentos que
    haya reaparecido. Si el jugador sigue conectado en un móvil, su token de Firebase vale
@@ -148,8 +150,9 @@ Qué sube la app (`docs/architecture/cloud-save.md`): un documento `saves/{uid}`
 partida entera (sobre firmado del export, gzip + base64), un `summary` en claro (cartas,
 XP, monedas, packs abiertos, **nombre de perfil** y avatar, puntos de quiz), la versión de
 formato y de app, la hora del servidor y un id aleatorio de instalación. Además una copia
-diaria y otra semanal (`saves_daily`, `saves_weekly`). El nombre de Play Games **no** va a
-Firestore (solo a Firebase Auth). Se sube solo, sin opt-in aparte, mientras haya sesión.
+diaria y otra semanal (`saves_daily`, `saves_weekly`). El nombre de Play Games solo llega a
+Firestore como nombre de perfil: al conectarse sin haber elegido nombre, la app lo toma como
+nombre de perfil (`adoptCloudDisplayName`). Se sube solo, sin opt-in aparte, mientras haya sesión.
 
 | Categoría › tipo | Collected | Shared | ¿Efímero? | ¿Obligatorio u opcional? | Finalidades |
 |---|---|---|---|---|---|
@@ -167,6 +170,31 @@ Firestore (solo a Firebase Auth). Se sube solo, sin opt-in aparte, mientras haya
   borrado?" sigue siendo Sí y la URL de borrado (§3) cubre también la partida.
 - Si `cloud_signin_required` pasa a `1`, User IDs, Name y el progreso pasan a *Required*
   (reenviar Data safety antes de activarlo).
+
+---
+
+## 5. Clasificación (Wildlifecollection#802)
+
+Un documento público por jugador con sesión, `xp_ranking/{uid}` = `{ name, cards, xp,
+avatar, updatedAt }` (`docs/architecture/xp-leaderboard.md`): nombre de perfil (máx. 24),
+cartas coleccionadas (especies + variantes), XP total, avatar como código `a<speciesId>[.<variantId>]` y hora del
+servidor. Se escribe solo, sin opt-in aparte, como mucho cada hora y solo si algo cambió.
+**Cualquier jugador con sesión puede leer todas las entradas** (las reglas no filtran
+campos), así que la XP y la hora también son legibles aunque la app no las enseñe. *Borrar
+cuenta en la nube* la borra en el mismo batch que la partida.
+
+| Categoría › tipo | Collected | Shared | ¿Efímero? | ¿Obligatorio u opcional? | Finalidades |
+|---|---|---|---|---|---|
+| **Personal info › Name** (ya en §1/§4) | Yes: ahora también es **visible para otros jugadores** | **Decídelo tú** (ver abajo) | No | Optional | App functionality |
+| **App activity › Other actions** (ya en §4) | Yes: cartas, XP y avatar entran en la entrada pública | Igual que Name | No | Optional | App functionality |
+
+- **¿"Shared"?** Play llama *sharing* a transferir datos a un tercero, y exime lo que el
+  usuario inicia esperando que se comparta. Aquí la entrada se publica sola al iniciar
+  sesión, sin un paso propio, así que la exención no encaja limpiamente. Lo conservador
+  es marcar **Shared = Yes** para Name y Other actions con finalidad *App functionality*;
+  lo que dice la política (§2.8) vale para las dos respuestas.
+- **Denuncias:** llegan a support@maraversegames.com. Un nombre se corrige o se borra a mano
+  en Firebase › Firestore › `xp_ranking` › documento del `uid`.
 
 Región de Firestore: el diseño pide `eur3` (o una región europea única) y es irreversible,
 pero el código no la fija; **confirma en Firebase › Firestore que es europea** (la política

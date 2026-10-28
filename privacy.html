@@ -23,7 +23,7 @@
   <div class="legal">
     <a class="back" href="index.html">← Back</a>
     <h1>Privacy Policy</h1>
-    <p>Wildlife Collection · Last updated: 26 October 2026</p>
+    <p>Wildlife Collection · Last updated: 28 October 2026</p>
 
     <p>This Privacy Policy explains how <strong>Wildlife Collection</strong>
       ("the app", "we", "us"), published by Maraverse Games, handles your
@@ -31,8 +31,8 @@
       Android. Your game progress is stored on your device. The only information that
       leaves it is the limited, pseudonymous data described below, used to keep the
       app running, improve it and show rewarded ads — and, if you choose to sign in
-      with Google Play Games, an account and a backup copy of your game progress in
-      the cloud (sections 2.6 and 2.7).</p>
+      with Google Play Games, an account, a backup copy of your game progress in
+      the cloud and an entry in the game's leaderboard (sections 2.6 to 2.8).</p>
 
     <p>For the purposes of the EU/UK General Data Protection Regulation, the data
       controller is <strong>Adrián Rodríguez Nieto</strong>, an individual developer
@@ -173,15 +173,17 @@
         your collection, coins, experience and level, packs opened, quests,
         achievements, streaks, activity history and settings — packed into a single
         compressed block;</li>
-      <li>the <strong>profile name</strong> and avatar you chose in the game, if any
-        (a name you type yourself in the app, not your Play Games name), and a short
+      <li>your in-game <strong>profile name</strong> and avatar (the profile name
+        starts as your Play Games player name when you sign in without having chosen
+        one, and is whatever you type once you change it), and a short
         summary of the save in plain fields: number of cards, experience, coins,
         packs opened and weekly trivia points;</li>
       <li>technical details: the save format and app version that wrote it, the time
         it was written, and a random identifier of the installation that wrote it.</li>
     </ul>
-    <p>Your Play Games player name and email address are not part of the cloud save;
-      they are held only by Firebase Authentication (section 2.6).</p>
+    <p>Your email address is not part of the cloud save; it is held only by Firebase
+      Authentication (section 2.6). Your Play Games player name reaches the cloud save
+      only as the profile name described above.</p>
     <p><strong>When it is uploaded.</strong> Automatically, without a separate
       prompt, whenever you are signed in and your game has changed since the last
       upload — when the app goes to the background and periodically while it runs,
@@ -212,6 +214,42 @@
       starts a new account with no cloud save. Your game on the device is not
       affected.</p>
 
+    <h3>2.8 Leaderboard</h3>
+    <p>The app has a leaderboard of players, ranked by the number of different cards
+      they have collected (with total experience points breaking a tie). While you are
+      signed in with Google Play Games, the app keeps <strong>your entry</strong> in it
+      automatically, in the same Cloud Firestore database as the cloud save
+      (section 2.7), stored under your user ID. Your entry contains:</p>
+    <ul>
+      <li>your in-game <strong>profile name</strong> (at most 24 characters; your Play
+        Games player name if you have not chosen another one, see section 2.7);</li>
+      <li>your <strong>avatar</strong>, as a short code naming the card you picked;</li>
+      <li>the <strong>number of different cards</strong> you have collected and your
+        <strong>total experience points</strong>;</li>
+      <li>the time the entry was last updated.</li>
+    </ul>
+    <p><strong>Who can see it.</strong> Unlike the cloud save, this entry is
+      <strong>visible to other players</strong>: any player signed in with Google Play
+      Games can read the entries, and the app shows them each player's name, avatar,
+      number of cards and position. Use a profile name you are comfortable showing to
+      strangers; you can change it at any time in your profile, and the entry follows
+      within about an hour. Players who are not signed in do not see the leaderboard
+      and do not appear in it.</p>
+    <p><strong>When it is updated.</strong> Automatically, without a separate prompt,
+      when your cards, experience, avatar or name change, at most about once an hour.
+      There is no separate switch to leave the leaderboard: you appear in it while you
+      use the Play Games sign-in, and deleting your cloud account removes you.</p>
+    <p><strong>Reporting a name.</strong> The &ldquo;Report a name&rdquo; link under
+      the leaderboard opens an email to us. We may change or remove a name that is
+      offensive or that identifies someone, directly in the database.</p>
+    <p><strong>What it is for.</strong> Showing the leaderboard. It is not used for
+      analytics, advertising or profiling, and it is not shared with anyone other than
+      Google as our service provider and the other players who view the leaderboard.</p>
+    <p><strong>How long it is kept.</strong> Until you delete your cloud account:
+      <code>Settings › Account › Delete cloud account</code> deletes the entry together
+      with the cloud save and its copies. Uninstalling the app does
+      <strong>not</strong> delete it.</p>
+
     <h2>3. Legal bases (EEA and UK users)</h2>
     <ul>
       <li><strong>Consent</strong> — personalized advertising, collected through the
@@ -223,7 +261,7 @@
         this, and never data that identifies you personally.</li>
       <li><strong>Performance of a contract</strong> — providing the game itself,
         including the on-device data that makes it work, and the Google Play Games
-        sign-in and cloud save when you choose to use them.</li>
+        sign-in, cloud save and leaderboard when you choose to use them.</li>
     </ul>
 
     <h2>4. Sharing and international transfers</h2>
@@ -243,8 +281,9 @@
       service, after which they are deleted automatically. Because none of it is
       attached to your account, clearing the app's data or uninstalling the app resets
       the identifiers that link it to your installation.</p>
-    <p>Your Play Games sign-in account (section 2.6) and your cloud save with its
-      daily and weekly copies (section 2.7) are kept until you delete them — from
+    <p>Your Play Games sign-in account (section 2.6), your cloud save with its
+      daily and weekly copies (section 2.7) and your leaderboard entry (section 2.8)
+      are kept until you delete them — from
       <code>Settings › Account</code> or by asking us — because they are what let you
       recover your progress on a new device. They do not expire on their own, and
       uninstalling the app does <strong>not</strong> delete them. When they are
@@ -267,10 +306,11 @@
 
     <h2>8. Data we do not collect</h2>
     <ul>
-      <li>We do not require an account to play. The optional Play Games sign-in and
-        cloud save are described in sections 2.6 and 2.7; we never ask you to type in
-        your email, phone number or a password. The only name you can type is an optional
-        in-game profile name, which is part of your cloud save if you use it.</li>
+      <li>We do not require an account to play. The optional Play Games sign-in,
+        cloud save and leaderboard are described in sections 2.6 to 2.8; we never ask
+        you to type in your email, phone number or a password. The only name you can
+        type is an optional in-game profile name, which is part of your cloud save and
+        shown in the leaderboard if you sign in.</li>
       <li>We do not collect your precise location.</li>
       <li>We do not collect your contacts, photos, or files.</li>
       <li>We do not use push notifications or send you marketing messages.</li>
@@ -308,10 +348,11 @@
 
     <h2>11. Deleting your data</h2>
     <p>Your game progress lives on your device — uninstalling the app or clearing its
-      storage removes that copy — and, if you signed in, also in your cloud save,
-      which uninstalling does not remove. To delete your Play Games sign-in account
-      together with your cloud save, use <code>Settings › Account › Delete cloud
-      account</code>. To request deletion of that account and save without the app,
+      storage removes that copy — and, if you signed in, also in your cloud save and
+      leaderboard entry, which uninstalling does not remove. To delete your Play Games
+      sign-in account together with your cloud save and leaderboard entry, use
+      <code>Settings › Account › Delete cloud account</code>. To request deletion of
+      that account, save and entry without the app,
       or of the limited data collected by
       third-party services (analytics, ads, crash diagnostics), see our
       <a href="delete-data.html">Account and Data Deletion</a> page.</p>
