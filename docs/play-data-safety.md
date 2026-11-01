@@ -61,8 +61,7 @@ Por qué cada respuesta:
   rechaza o falla, sigue jugando y la app no vuelve a preguntar sola. El bloqueo
   (`cloud_signin_required`) sale **apagado** (`0`). **Si alguna vez se pone a `1`, hay que
   cambiar estos dos tipos a *Required* y reenviar Data safety antes de activarlo.**
-- **Finalidad.** Enseñar "Conectado como …" y ligar el guardado en la nube (§4) al jugador. No se usa para analítica, anuncios ni personalización: el `uid` no va
-  a Analytics ni a Sentry (no hay `setUserId` ni `Sentry.setUser` en el código).
+- **Finalidad.** Enseñar "Conectado como …" y ligar el guardado en la nube (§4) al jugador. En 2.4.0 el `uid` no iba a Analytics ni a Sentry. **Desde 2.5.0 sí va a Analytics, hasheado: ver §6.** Sigue sin ir a Sentry ni a anuncios.
 - **Email: depende de lo que guarde Firebase.** El plugin pide el email a Google
   (`PlayGamesAuthProviderHandler.java` llama a `.requestEmail()`), aunque la app no lo lee
   (`toUser` en `src/cloud/auth.ts` se queda solo con `uid` y `displayName`). Después del
@@ -199,3 +198,22 @@ cuenta en la nube* la borra en el mismo batch que la partida.
 Región de Firestore: el diseño pide `eur3` (o una región europea única) y es irreversible,
 pero el código no la fija; **confirma en Firebase › Firestore que es europea** (la política
 dice "located in the European Union").
+
+---
+
+## 6. Analítica con identificador de usuario (Wildlifecollection#801, 2.5.0)
+
+Cada evento de GA4 de un jugador con sesión lleva un `user_id` = `SHA-256('wlc-ga4:' + uid)`
+(`src/analytics/index.ts`, `docs/architecture/analytics.md`). Nunca el `uid`. Sin sesión, o
+tras *Borrar cuenta en la nube*, no se manda. Sirve para reconocer al mismo jugador entre
+dispositivos y reinstalaciones.
+
+| Categoría › tipo | Collected | Shared | ¿Efímero? | ¿Obligatorio u opcional? | Finalidades |
+|---|---|---|---|---|---|
+| **Personal info › User IDs** (ya en §1) | Yes: ahora también es el identificador hasheado que acompaña a los eventos de GA4 | **No** (Google lo trata como proveedor de servicio) | No | Optional (solo si el jugador se conecta) | App functionality, Account management, **Analytics** (añadir esta) |
+
+- **Lo único que cambia en la consola** es añadir la finalidad **Analytics** a *User IDs*.
+  *App activity › App interactions* ya la tiene.
+- **GA4, fuera de Play:** Admin › Identidad de informes = *Combinada*, para que el `user_id`
+  se use de verdad.
+- **Política:** `privacy.html` §2.1 lo explica desde esta release.
