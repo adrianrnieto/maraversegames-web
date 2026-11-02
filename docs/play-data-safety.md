@@ -61,7 +61,7 @@ Por qué cada respuesta:
   rechaza o falla, sigue jugando y la app no vuelve a preguntar sola. El bloqueo
   (`cloud_signin_required`) sale **apagado** (`0`). **Si alguna vez se pone a `1`, hay que
   cambiar estos dos tipos a *Required* y reenviar Data safety antes de activarlo.**
-- **Finalidad.** Enseñar "Conectado como …" y ligar el guardado en la nube (§4) al jugador. En 2.4.0 el `uid` no iba a Analytics ni a Sentry. **Desde 2.5.0 sí va a Analytics, hasheado: ver §6.** Sigue sin ir a Sentry ni a anuncios.
+- **Finalidad.** Enseñar "Conectado como …" y ligar el guardado en la nube (§4) al jugador. En 2.4.0 el `uid` no iba a Analytics ni a Sentry. **Desde 2.5.0 sí va a Analytics, hasheado: ver §6.** **Desde la release de Wildlifecollection#832 va también a Sentry, tal cual: ver §7.** Sigue sin ir a anuncios.
 - **Email: depende de lo que guarde Firebase.** El plugin pide el email a Google
   (`PlayGamesAuthProviderHandler.java` llama a `.requestEmail()`), aunque la app no lo lee
   (`toUser` en `src/cloud/auth.ts` se queda solo con `uid` y `displayName`). Después del
@@ -217,3 +217,22 @@ dispositivos y reinstalaciones.
 - **GA4, fuera de Play:** Admin › Identidad de informes = *Combinada*, para que el `user_id`
   se use de verdad.
 - **Política:** `privacy.html` §2.1 lo explica desde esta release.
+
+---
+
+## 7. Diagnóstico de errores con identificador de usuario (Wildlifecollection#832)
+
+Cada evento de Sentry de un jugador con sesión lleva una etiqueta `uid` con el **uid de Firebase
+tal cual** (no el hash de GA4): es el id de sus documentos en Firestore, y sirve para leer un
+error al lado de su guardado y de su entrada del ranking (`setSentryPlayerId` en
+`src/monitoring/sentry.ts`, `docs/architecture/monitoring.md`). Sin sesión, o tras *Borrar
+cuenta en la nube*, no se manda. Conocer el `uid` no da acceso a nada: las reglas de
+Firestore exigen estar autenticado como ese usuario.
+
+| Categoría › tipo | Collected | Shared | ¿Efímero? | ¿Obligatorio u opcional? | Finalidades |
+|---|---|---|---|---|---|
+| **Personal info › User IDs** (ya en §1 y §6) | Yes: ahora también acompaña a los informes de error de Sentry | **No** (Sentry procesa como proveedor de servicio) | No | Optional (solo si el jugador se conecta) | App functionality, Account management, Analytics |
+
+- **En la consola no cambia nada:** la finalidad **Analytics** ya está marcada en *User IDs*
+  desde §6, y su definición en Play incluye «diagnosticar y solucionar errores o bloqueos».
+- **Política:** `privacy.html` §2.3 lo explica desde esta release.
