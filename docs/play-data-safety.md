@@ -25,7 +25,7 @@ publicar 2.4.0. Los nombres de los campos van como aparecen en la consola en ing
 español pueden cambiar un poco.
 
 Actualizado el 26 oct 2026 para la fase 3 (guardado en Firestore), y el 28 oct 2026 para
-la clasificación (§5).
+la clasificación (§5); 11 nov 2026: puntos y perfil (§5).
 
 Decisiones tomadas (22 oct 2026): las páginas legales siguen solo en inglés (Play no
 exige otro idioma); la cuenta se guarda hasta que el jugador la borra, sin caducidad por
@@ -192,6 +192,15 @@ cuenta en la nube* la borra en el mismo batch que la partida.
   sesión, sin un paso propio, así que la exención no encaja limpiamente. Lo conservador
   es marcar **Shared = Yes** para Name y Other actions con finalidad *App functionality*;
   lo que dice la política (§2.8) vale para las dos respuestas.
+- **Actualización 11 nov 2026 (puntos y perfil, Wildlifecollection#863/#867/#869):** la entrada
+  pasa a llevar, además, `points` (lo que vale la colección) y campos de perfil que otro
+  jugador ve al tocar la fila: nivel, trofeos (ids de colecciones completadas), brillantes,
+  variantes, favoritas, sobres abiertos, aciertos/preguntas/mejor racha de Wild Trivia, mes de
+  inicio y `quiet` (el interruptor «Ocultar mi actividad»). Todo son números, sin texto libre.
+  **No hay tipo de dato nuevo en Data safety:** sigue siendo *App activity › Other actions*
+  (y *Name*) con las mismas respuestas que arriba; solo comprueba que lo que declaraste ahí
+  cubre «progreso y estadísticas de juego visibles para otros jugadores». La política (§2.8)
+  ya lo dice.
 - **Denuncias:** llegan a support@maraversegames.com. Un nombre se corrige o se borra a mano
   en Firebase › Firestore › `xp_ranking` › documento del `uid`.
 

@@ -23,7 +23,7 @@
   <div class="legal">
     <a class="back" href="index.html">← Back</a>
     <h1>Privacy Policy</h1>
-    <p>Wildlife Collection · Last updated: 2 November 2026</p>
+    <p>Wildlife Collection · Last updated: 11 November 2026</p>
 
     <p>This Privacy Policy explains how <strong>Wildlife Collection</strong>
       ("the app", "we", "us"), published by Maraverse Games, handles your
@@ -223,8 +223,9 @@
       affected.</p>
 
     <h3>2.8 Leaderboard</h3>
-    <p>The app has a leaderboard of players, ranked by the number of different cards
-      they have collected (with total experience points breaking a tie). While you are
+    <p>The app has a leaderboard of players, ranked by the <strong>points</strong>
+      their collection is worth (rarer cards, variants and foil cards are worth more;
+      total experience points break a tie). While you are
       signed in with Google Play Games, the app keeps <strong>your entry</strong> in it
       automatically, in the same Cloud Firestore database as the cloud save
       (section 2.7), stored under your user ID. Your entry contains:</p>
@@ -232,19 +233,31 @@
       <li>your in-game <strong>profile name</strong> (at most 24 characters; your Play
         Games player name if you have not chosen another one, see section 2.7);</li>
       <li>your <strong>avatar</strong>, as a short code naming the card you picked;</li>
-      <li>the <strong>number of different cards</strong> you have collected and your
+      <li>the <strong>number of different cards</strong> you have collected, the
+        <strong>points</strong> your collection is worth (a number worked out from your
+        cards, with how it splits between species, variants and foil cards) and your
         <strong>total experience points</strong>;</li>
+      <li>a few <strong>profile statistics</strong>: your level, the collections you have
+        completed, how many foil cards, variants and favourites you have, how many packs
+        you have opened, your Wild Trivia answers, accuracy and best run, and the month
+        you started playing;</li>
       <li>the time the entry was last updated.</li>
     </ul>
     <p><strong>Who can see it.</strong> Unlike the cloud save, this entry is
       <strong>visible to other players</strong>: any player signed in with Google Play
       Games can read the entries, and the app shows them each player's name, avatar,
-      number of cards and position. Use a profile name you are comfortable showing to
+      number of cards, points and position. When another player taps your row they also
+      see the profile statistics above (the name of a completed collection is only shown
+      to players who have unlocked that collection themselves) and, in broad terms
+      (today, this week, this month, longer), how recently your numbers last changed.
+      You can hide that last line with &ldquo;Hide my activity&rdquo;, under the
+      leaderboard or in <code>Settings › Privacy</code>; the entry still records when
+      it was last written. Use a profile name you are comfortable showing to
       strangers; you can change it at any time in your profile, and the entry follows
       within about an hour. Players who are not signed in do not see the leaderboard
       and do not appear in it.</p>
     <p><strong>When it is updated.</strong> Automatically, without a separate prompt,
-      when your cards, experience, avatar or name change, at most about once an hour.
+      when your cards, points, statistics, experience, avatar or name change, at most about once an hour.
       There is no separate switch to leave the leaderboard: you appear in it while you
       use the Play Games sign-in, and deleting your cloud account removes you.</p>
     <p><strong>Reporting a name.</strong> The &ldquo;Report a name&rdquo; link under
