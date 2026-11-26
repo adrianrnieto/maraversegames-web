@@ -59,6 +59,9 @@ strong { color: #fff; font-weight: 600; }
   font: inherit; font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.7rem; transition: all 0.2s;
 }
 .lang-toggle button.is-active { background: var(--gold); color: #1a1205; }
+/* Four languages: keep the whole switcher visible on a phone */
+.lang-toggle { flex-shrink: 0; }
+@media (max-width: 420px) { .lang-toggle button { padding: 0.3rem 0.5rem; } }
 
 @media (max-width: 680px) {
   .nav a:not(.lang-toggle a) { display: none; }
@@ -175,10 +178,10 @@ strong { color: #fff; font-weight: 600; }
 @media (max-width: 560px) { .feature-grid { grid-template-columns: 1fr; } }
 
 /* ---------- Gallery ---------- */
-.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem 1.2rem; }
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem 1.2rem; }
 .g-phone { display: flex; flex-direction: column; align-items: center; gap: 0.7rem; }
 .g-phone img {
-  width: 100%; max-width: 230px; border-radius: 22px; border: 1px solid var(--border);
+  width: 100%; height: auto; max-width: 230px; border-radius: 22px; border: 1px solid var(--border);
   box-shadow: var(--shadow); transition: transform 0.2s;
 }
 .g-phone:hover img { transform: translateY(-6px) scale(1.02); }
