@@ -10,9 +10,30 @@
    ------------------------------------------------------------------------- */
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.maraversegames.wildlifecollection';
 
-/* ---------------- i18n dictionary ---------------- */
+/* ---------------- i18n dictionary ----------------
+   en and es are complete. fr and pt (Brazilian Portuguese, <html lang="pt-BR">)
+   follow the game's glossary (Wildlifecollection docs/glossary.md and
+   src/i18n/locales/{fr,pt}.ts): foil card = carte brillante / carta brilhante,
+   pack = paquet / pacote, badge = succès / conquista, quest = quête / missão.
+
+   TODO(facts): keys whose content is a number or a specific feature claim are
+   NOT in fr / pt yet; they fall back to English until they are rewritten from
+   the game's facts sheet (and en / es updated with them):
+     hero.badge.real, hero.badge.lang, stat.lang, feat.packs.d, feat.streaks.d,
+     feat.foils.d, feat.trivia.d, rares.foil.d, edu.scale.d, studio.value.lang.d
+   The fr / pt page titles, meta / OG descriptions, final.sub,
+   studio.game.wildlife and studio.story.p2 are written without the species
+   count for the same reason: add it back in phase 2.
+   The numbers in the stats strip (3,500+, 20+, EN · ES) are hard-coded in
+   the-wildlife-collection.html, also TODO(facts). */
 const I18N = {
   en: {
+    'page.title': 'Wildlife Collection — Free Wildlife Card Game · Collect 3,500+ Real Animals',
+    'og.title': 'Wildlife Collection — Free Wildlife Card Game',
+    'og.description': 'Open packs, collect 3,500+ real animal cards and complete collections. Free, fully offline, built on real IUCN conservation data.',
+    'studio.page.title': 'Maraverse Games — Indie Studio · Worlds Worth Collecting',
+    'studio.og.title': 'Maraverse Games — Worlds worth collecting',
+    'studio.og.description': 'A one-person indie studio crafting collection games across real and imagined worlds — starting with Wildlife Collection.',
     'meta.description': 'A free, fully offline wildlife card game. Open packs, collect 3,500+ real animal cards and complete themed collections — an educational animal collection game built on real IUCN conservation data. Android, English & Español.',
     'nav.features': 'Features',
     'nav.learn': 'Learn',
@@ -20,7 +41,7 @@ const I18N = {
     'nav.reviews': 'Reviews',
     'hero.eyebrow': 'A wildlife card-collecting game',
     'hero.title': 'Collect the wild,<br>one pack at a time.',
-    'hero.sub': "Tear open a pack and watch real species appear — some you've never even heard of. Complete themed collections, chase shiny foils and rare variants, and build an album that's truly yours.",
+    'hero.sub': "Tear open a pack and watch real species appear — some you've never even heard of. Complete themed collections, chase foil cards and rare variants, and build an album that's truly yours.",
     'cta.getiton': 'GET IT ON',
     'cta.soon': '🚀 Launching soon — Android first',
     'cta.mid': 'Your first pack is one tap away — free, and yours to keep offline.',
@@ -47,10 +68,10 @@ const I18N = {
     'feat.trade.d': 'Stack duplicates and exchange them for rarer cards — or unlock stunning colour-morph variants.',
     'feat.streaks.t': 'Daily rewards & streaks',
     'feat.streaks.d': 'Log in daily for coins and bonus packs. Keep a 7-day streak to unlock a special collection.',
-    'feat.foils.t': 'Shiny cards & variants',
-    'feat.foils.d': 'Chase Silver, Gold and Rainbow shiny cards, plus rare colour-morph variants with their own alternate artwork.',
+    'feat.foils.t': 'Foil cards & variants',
+    'feat.foils.d': 'Chase Silver, Gold and Rainbow foil cards, plus rare colour-morph variants with their own alternate artwork.',
     'feat.trivia.t': 'Wild Trivia',
-    'feat.trivia.d': 'An endless animal quiz with three lives and questions that keep getting harder. Climb the weekly standings against rival naturalists — the weekly prize turns one of your cards shiny.',
+    'feat.trivia.d': 'An endless animal quiz with three lives and questions that keep getting harder. Climb the weekly standings against rival naturalists — the weekly prize turns one of your cards into a foil.',
     'feat.cal.t': 'Real wildlife calendar',
     'feat.cal.d': 'An in-game calendar of real international wildlife days, each with special boosts to make the most of.',
     'feat.quests.t': 'Quests & badges',
@@ -63,7 +84,7 @@ const I18N = {
     'rares.legendary.t': 'Legendary',
     'rares.legendary.d': "The rarest tier — a card you'll remember pulling.",
     'rares.foil.t': 'Silver · Gold · Rainbow foils',
-    'rares.foil.d': 'Three shimmering shiny tiers to chase across every species.',
+    'rares.foil.d': 'Three shimmering foil tiers to chase across every species.',
     'rares.variant.t': 'Secret variants',
     'rares.variant.d': 'Rare colour-morph variants with their own alternate art.',
     'rares.status.t': 'Rarity that means something',
@@ -169,6 +190,12 @@ const I18N = {
     'err.back': 'BACK TO',
   },
   es: {
+    'page.title': 'Wildlife Collection — Juego de cartas de animales gratis · Colecciona más de 3.500 animales reales',
+    'og.title': 'Wildlife Collection — Juego de cartas de animales gratis',
+    'og.description': 'Abre sobres, colecciona más de 3.500 cartas de animales reales y completa colecciones. Gratis, sin conexión y basado en datos reales de conservación de la UICN.',
+    'studio.page.title': 'Maraverse Games — Estudio indie · Mundos que merece la pena coleccionar',
+    'studio.og.title': 'Maraverse Games — Mundos que merece la pena coleccionar',
+    'studio.og.description': 'Un estudio indie en solitario que crea juegos de colección en mundos reales e imaginados, empezando por Wildlife Collection.',
     'meta.description': 'Un juego de cartas de animales gratis y sin conexión. Abre sobres, colecciona más de 3.500 cartas de animales reales y completa colecciones temáticas — un juego educativo basado en datos reales de conservación de la UICN. Android, inglés y español.',
     'nav.features': 'Características',
     'nav.learn': 'Aprende',
@@ -209,8 +236,8 @@ const I18N = {
     'feat.trivia.d': 'Un quiz de animales sin fin, con tres vidas y preguntas cada vez más difíciles. Sube en la clasificación semanal frente a otros naturalistas — el premio semanal convierte una de tus cartas en brillante.',
     'feat.cal.t': 'Calendario de vida salvaje',
     'feat.cal.d': 'Un calendario con días internacionales reales de la naturaleza, cada uno con bonificaciones especiales para aprovechar.',
-    'feat.quests.t': 'Misiones e insignias',
-    'feat.quests.d': 'Misiones diarias y semanales, y insignias a largo plazo con recompensas de monedas por niveles, para que cada partida tenga un objetivo.',
+    'feat.quests.t': 'Misiones y logros',
+    'feat.quests.d': 'Misiones diarias y semanales, y logros a largo plazo con recompensas de monedas por niveles, para que cada partida tenga un objetivo.',
     'feat.iucn.t': 'Datos reales de conservación',
     'feat.iucn.d': 'Cada especie lleva su estado real en la Lista Roja de la UICN, que determina su rareza y su valor en el juego.',
     'rares.eyebrow': 'La emoción de la carta rara',
@@ -218,7 +245,7 @@ const I18N = {
     'rares.lead': 'La mayoría de cartas son comunes. Entonces una brillante refleja la luz — y el sobre entero merece la pena.',
     'rares.legendary.t': 'Legendaria',
     'rares.legendary.d': 'El nivel más raro — una carta que recordarás haber sacado.',
-    'rares.foil.t': 'Brillos Plata · Oro · Arcoíris',
+    'rares.foil.t': 'Brillantes Plata · Oro · Arcoíris',
     'rares.foil.d': 'Tres niveles brillantes que perseguir en cada especie.',
     'rares.variant.t': 'Variantes secretas',
     'rares.variant.d': 'Variantes de color raras con su propio arte alternativo.',
@@ -324,30 +351,401 @@ const I18N = {
     'err.sub': 'La página que buscas se ha perdido en la espesura.',
     'err.back': 'VOLVER A',
   },
+  fr: {
+    // Français, tutoiement comme dans le jeu. Espace insécable ( ) avant : ; ! ? % et dans « ».
+    'page.title': 'Wildlife Collection · Jeu de cartes gratuit sur les animaux sauvages',
+    'og.title': 'Wildlife Collection · Le jeu de cartes gratuit sur la faune sauvage',
+    'og.description': 'Ouvre des paquets, collectionne de vraies cartes d’animaux et complète des collections. Gratuit, jouable hors ligne et fondé sur les vraies données de conservation de l’UICN.',
+    'studio.page.title': 'Maraverse Games · Studio indépendant · Des mondes à collectionner',
+    'studio.og.title': 'Maraverse Games · Des mondes à collectionner',
+    'studio.og.description': 'Un studio indépendant d’une seule personne qui crée des jeux de collection dans des mondes réels et imaginaires, à commencer par Wildlife Collection.',
+    'meta.description': 'Un jeu de cartes gratuit sur les animaux sauvages, entièrement jouable hors ligne. Ouvre des paquets, collectionne de vraies espèces et complète des collections thématiques : un jeu éducatif fondé sur les vraies données de conservation de l’UICN. Sur Android.',
+    'nav.features': 'Fonctionnalités',
+    'nav.learn': 'Apprendre',
+    'nav.conservation': 'Conservation',
+    'nav.reviews': 'Avis',
+    'hero.eyebrow': 'Un jeu de cartes à collectionner sur la faune sauvage',
+    'hero.title': 'La nature à collectionner,<br>paquet après paquet.',
+    'hero.sub': 'Ouvre un paquet et regarde apparaître de vraies espèces, dont certaines dont tu n’as jamais entendu parler. Complète des collections thématiques, traque les cartes brillantes et les variantes rares, et compose un album qui n’appartient qu’à toi.',
+    'cta.getiton': 'DISPONIBLE SUR',
+    'cta.soon': '🚀 Bientôt disponible, d’abord sur Android',
+    'cta.mid': 'Ton premier paquet est à portée de doigt : gratuit, et à toi, même hors ligne.',
+    'hero.badge.free': '100 % gratuit',
+    'hero.badge.offline': 'Jouable entièrement hors ligne',
+    'stat.species': 'espèces réelles',
+    'stat.collections': 'collections thématiques',
+    'stat.free.v': '100 %',
+    'stat.free': 'gratuit et hors ligne',
+    'band.free.t': 'Gratuit',
+    'band.free.d': 'Rien à payer pour jouer, aucun compte à créer. Télécharge le jeu et commence ta collection.',
+    'band.offline.t': 'Fonctionne sans internet',
+    'band.offline.d': 'Tout le jeu tourne sur ton appareil : en avion, dans le métro, partout.',
+    'features.title': 'Tout ce qu’un collectionneur adore',
+    'features.lead': 'Un rendez-vous quotidien fait de découvertes, de progrès et du frisson de la carte rare.',
+    'feat.packs.t': 'Ouvre des paquets',
+    'feat.collections.t': 'Complète des collections',
+    'feat.collections.d': 'Complète des collections thématiques venues des milieux naturels du monde entier : chacune que tu termines ouvre la suivante. De nouvelles collections arrivent à chaque mise à jour.',
+    'feat.trade.t': 'Améliore tes doublons',
+    'feat.trade.d': 'Accumule les doublons et échange-les contre des cartes plus rares, ou débloque de superbes variantes.',
+    'feat.streaks.t': 'Récompenses quotidiennes et séries',
+    'feat.foils.t': 'Cartes brillantes et variantes',
+    'feat.trivia.t': 'Quiz sauvage',
+    'feat.cal.t': 'Un vrai calendrier de la nature',
+    'feat.cal.d': 'Un calendrier des vraies journées mondiales consacrées à la faune, chacune avec ses bonus à ne pas manquer.',
+    'feat.quests.t': 'Quêtes et succès',
+    'feat.quests.d': 'Des quêtes quotidiennes et hebdomadaires, et des succès à long terme qui rapportent des pièces à chaque niveau : chaque partie a son objectif.',
+    'feat.iucn.t': 'De vraies données de conservation',
+    'feat.iucn.d': 'Chaque espèce porte son véritable statut sur la Liste rouge de l’UICN, qui fixe sa rareté et sa valeur dans le jeu.',
+    'rares.eyebrow': 'Le frisson du tirage',
+    'rares.title': 'Certaines cartes, tu les chercheras des semaines',
+    'rares.lead': 'La plupart des tirages sont communs. Puis une brillante accroche la lumière, et le paquet entier en valait la peine.',
+    'rares.legendary.t': 'Légendaire',
+    'rares.legendary.d': 'Le rang le plus rare : une carte que tu n’oublieras pas d’avoir tirée.',
+    'rares.foil.t': 'Brillantes Argent · Or · Arc-en-ciel',
+    'rares.variant.t': 'Variantes secrètes',
+    'rares.variant.d': 'Des variantes rares, chacune avec sa propre illustration.',
+    'rares.status.t': 'Une rareté qui a du sens',
+    'rares.status.d': 'Plus l’espèce est proche de l’extinction, plus la carte est rare. Un vrai statut, une vraie rareté.',
+    'edu.eyebrow': 'Plus qu’un jeu',
+    'edu.title': 'Un jeu qui t’apprend plein de choses en jouant',
+    'edu.lead': 'Les albums d’images de notre enfance, réinventés et discrètement éducatifs, à tout âge.',
+    'edu.all.t': 'Pour tous les âges',
+    'edu.all.d': 'Parents, enfants et curieux. Le plaisir d’enfance de compléter une collection, désormais dans ta poche.',
+    'edu.discover.t': 'À la rencontre de l’inconnu',
+    'edu.discover.d': 'La plupart de ces espèces, tu n’en as jamais entendu parler. Même les passionnés d’animaux en découvrent des dizaines.',
+    'edu.scale.t': 'L’un des plus grands catalogues qui soient',
+    'edu.real.t': 'Des illustrations réalistes, revues à la main',
+    'edu.real.d': 'Chaque image est vérifiée à la main pour son réalisme : chaque animal ressemble au vrai, jamais à un dessin animé.',
+    'screens.title': 'Le jeu en images',
+    'screens.lead': 'De vrais écrans, capturés directement dans l’appli.',
+    'g.home': 'Tableau de bord du jour',
+    'g.album': 'Ton album',
+    'g.pack': 'Ouverture d’un paquet',
+    'g.card': 'Fiche de la carte',
+    'g.collections': 'Collections',
+    'g.profile': 'Ton profil',
+    'cons.eyebrow': 'Fondé sur de vraies données de conservation',
+    'cons.title': 'Chaque statut raconte une histoire vraie',
+    'cons.p1': 'Ici, la rareté n’est pas inventée. Chaque espèce porte son véritable statut sur la <strong>Liste rouge de l’UICN</strong>, de Préoccupation mineure à En danger critique, Éteinte à l’état sauvage et Éteinte. C’est ce statut qui fixe la rareté de chaque carte.',
+    'cons.p2': 'Et chaque niveau compte. Les espèces en « Préoccupation mineure » se portent bien, mais restent surveillées ; celles qui sont « Quasi menacées » ou « Vulnérables » perdent du terrain en silence ; beaucoup trop sont déjà En danger, ou ont disparu pour de bon, presque toujours à cause de nous. Le jeu rassemble même des espèces qui ne survivent plus qu’en captivité, ou que la planète a définitivement perdues.',
+    'cons.p3': 'C’est une petite façon de mettre en lumière un monde naturel qui en a besoin, en donnant un visage à des espèces que tu n’aurais peut-être jamais croisées.',
+    'cons.lc': 'Préoccupation mineure',
+    'cons.nt': 'Quasi menacée',
+    'cons.vu': 'Vulnérable',
+    'cons.en': 'En danger',
+    'cons.cr': 'En danger critique',
+    'cons.ex': 'Éteinte / Éteinte à l’état sauvage',
+    'social.eyebrow': 'De vrais avis Google Play',
+    'social.title': 'Noté 4,9 ★ sur Google Play',
+    'social.lead': 'Ce que disent les joueurs, directement depuis la fiche du Play Store :',
+    'social.r1.q': '« J’adore cette appli ! … On peut jouer hors ligne et recevoir un paquet gratuit de 12 cartes toutes les heures. Aucun achat obligatoire ! J’adore le système de statuts de conservation, de Préoccupation mineure à Éteinte. »',
+    'social.r1.a': 'rocky085 · Google Play',
+    'social.r2.q': '« Un jeu super amusant et très intuitif. On devient vite accro : on vient pour un petit moment et on finit par y jouer un bon moment. »',
+    'social.r2.a': 'Carla B. · Google Play',
+    'social.r3.q': '« Un jeu très divertissant où l’on apprend énormément : chaque jour, on découvre des animaux fascinants du monde entier. Recommandé à 200 % ! »',
+    'social.r3.a': 'Nuria L. · Google Play',
+    'social.note': 'Avis issus de la fiche Google Play ; certains traduits ou raccourcis.',
+    'final.title': 'Commence ta collection',
+    'final.sub': 'Des espèces du monde entier t’attendent : gratuit, hors ligne, sur Android.',
+    'foot.tag': 'Un studio de jeux indépendant. Des mondes à collectionner.',
+    'foot.tagGame': 'Wildlife Collection est un jeu Maraverse Games.',
+    'foot.privacy': 'Confidentialité (en anglais)',
+    'foot.contact': 'Contact',
+    // Accueil du studio
+    'nav.studio': '← Maraverse Games',
+    'studio.meta': 'Maraverse Games est un studio indépendant qui crée des jeux de collection et d’aventure dans des mondes réels et imaginaires, à commencer par Wildlife Collection.',
+    'studio.nav.games': 'Jeux',
+    'studio.nav.worlds': 'Mondes',
+    'studio.nav.about': 'Studio',
+    'studio.eyebrow': 'Studio de jeux indépendant',
+    'studio.title': 'Des mondes<br>à collectionner.',
+    'studio.sub': 'Nous sommes <strong>Maraverse Games</strong>, un studio indépendant d’une seule personne qui crée des jeux de collection sur les mondes, réels ou imaginaires, qui méritent d’être connus. Le premier est là : <strong>Wildlife Collection</strong>.',
+    'studio.cta.small': 'NOTRE PREMIER JEU',
+    'studio.games.title': 'Nos jeux',
+    'studio.games.lead': 'Notre premier jeu est presque là, et d’autres prennent déjà forme.',
+    'studio.status.live': 'Sur Google Play · Android',
+    'studio.status.dev': 'En développement',
+    'studio.game.wildlife': 'Découvre de vraies espèces animales, ouvre des paquets et complète des collections, le tout fondé sur les vraies données de conservation de la Liste rouge de l’UICN.',
+    'studio.game.view': 'Voir le jeu →',
+    'studio.status.coming': 'Bientôt',
+    'studio.soon.tile1': 'Quand les géants régnaient sur la Terre',
+    'studio.soon.tile2': 'Au-delà des étoiles',
+    'studio.soon.tile3': 'Un royaume de légende',
+    'studio.soon.note': 'Trois autres mondes prennent déjà forme. Leurs noms sont encore secrets : à très bientôt.',
+    'worlds.eyebrow': 'Un studio, quatre univers',
+    'worlds.title': 'Le Maraverse',
+    'worlds.lead': 'Chaque jeu Maraverse est un monde à collectionner, tous unis par le même soin et le même savoir-faire.',
+    'worlds.nature.t': 'Nature',
+    'worlds.nature.d': 'De vraies espèces, dès maintenant.',
+    'worlds.prehistory.t': 'Préhistoire',
+    'worlds.prehistory.d': 'Quand les géants régnaient sur la Terre.',
+    'worlds.space.t': 'Espace',
+    'worlds.space.d': 'Au-delà des étoiles.',
+    'worlds.fantasy.t': 'Fantasy',
+    'worlds.fantasy.d': 'Un royaume de légende.',
+    'studio.story.eyebrow': 'Notre histoire',
+    'studio.story.title': 'D’où vient Maraverse Games',
+    'studio.story.p1': 'Les jeux sont venus en premier. J’ai commencé à programmer à 15 ans justement pour en créer, de petits jeux en noir et blanc écrits en C, et même mon projet de fin d’études d’ingénieur était ma propre version d’un jeu que j’adorais. Ma carrière a pris un autre chemin, mais créer des jeux est resté ce vers quoi je revenais toujours.',
+    'studio.story.p2': 'Pendant des années, ça n’a pu être qu’un loisir. Un projet comme Wildlife Collection, avec <strong>tout un catalogue d’illustrations animalières réalistes, revues à la main</strong>, était impossible à dessiner ou à financer pour une seule personne. Puis l’IA a changé la donne, et depuis fin 2023 je construis enfin, seul, les mondes que je n’avais fait qu’imaginer.',
+    'studio.story.p3': 'Et ce sont des mondes que j’aime. Je suis passionné de science et de nature (biologie, astronomie, paléontologie) et je photographie les oiseaux pendant mon temps libre. Ces jeux réunissent ces passions. Le premier a pris forme à l’autre bout de la planète, pendant les trois mois passés en Asie pour notre lune de miel.',
+    'studio.story.mara': 'Un dernier petit bout de la maison : en janvier 2020, nous avons adopté <strong>Mara</strong>, notre chienne, dans un refuge près de chez nous. Elle est arrivée dans un état déchirant et elle a vite fait partie de la famille. Le studio porte son nom, et tu la retrouveras dans tout ce que nous créons. 🐾',
+    'studio.story.sign': '— Adrián, fondateur de Maraverse Games',
+    'studio.value.real.t': 'Ancré dans le réel',
+    'studio.value.real.d': 'De vraies espèces, de la vraie science, un vrai émerveillement.',
+    'studio.value.craft.t': 'Fait avec soin',
+    'studio.value.craft.d': 'Chaque image revue à la main pour son réalisme.',
+    'studio.value.fair.t': 'Le joueur d’abord',
+    'studio.value.fair.d': 'Des jeux gratuits et paisibles, sans interfaces trompeuses.',
+    'studio.value.lang.t': 'Fait pour voyager',
+    'studio.final.title': 'Commence par la nature',
+    'studio.final.sub': 'Notre premier jeu est presque là. Jette un œil pendant que les prochains mondes prennent forme.',
+    // 404
+    'err.title': 'Ce sentier ne mène nulle part',
+    'err.sub': 'La page que tu cherches s’est perdue dans la nature.',
+    'err.back': 'RETOUR À',
+  },
+  pt: {
+    // Português do Brasil (<html lang="pt-BR">): "você", aspas “ ”, sem travessões explicativos.
+    'page.title': 'Wildlife Collection · Jogo de cartas de animais grátis',
+    'og.title': 'Wildlife Collection · O jogo de cartas de animais grátis',
+    'og.description': 'Abra pacotes, colecione cartas de animais reais e complete coleções. Grátis, funciona sem internet e é baseado em dados reais de conservação da IUCN.',
+    'studio.page.title': 'Maraverse Games · Estúdio indie · Mundos para colecionar',
+    'studio.og.title': 'Maraverse Games · Mundos para colecionar',
+    'studio.og.description': 'Um estúdio indie de uma pessoa só que cria jogos de coleção em mundos reais e imaginários, começando por Wildlife Collection.',
+    'meta.description': 'Um jogo de cartas de animais grátis que funciona totalmente sem internet. Abra pacotes, colecione espécies reais e complete coleções temáticas: um jogo educativo baseado em dados reais de conservação da IUCN. Para Android.',
+    'nav.features': 'Recursos',
+    'nav.learn': 'Aprenda',
+    'nav.conservation': 'Conservação',
+    'nav.reviews': 'Avaliações',
+    'hero.eyebrow': 'Um jogo de colecionar cartas da vida selvagem',
+    'hero.title': 'Colecione a natureza,<br>um pacote de cada vez.',
+    'hero.sub': 'Abra um pacote e veja surgir espécies reais, algumas que você nem sabia que existiam. Complete coleções temáticas, vá atrás de cartas brilhantes e variantes raras e monte um álbum que é só seu.',
+    'cta.getiton': 'DISPONÍVEL NO',
+    'cta.soon': '🚀 Em breve, primeiro no Android',
+    'cta.mid': 'Seu primeiro pacote está a um toque: grátis, e seu para jogar sem internet.',
+    'hero.badge.free': '100% grátis',
+    'hero.badge.offline': 'Funciona totalmente sem internet',
+    'stat.species': 'espécies reais',
+    'stat.collections': 'coleções temáticas',
+    'stat.free.v': '100%',
+    'stat.free': 'grátis e sem internet',
+    'band.free.t': 'Grátis para jogar',
+    'band.free.d': 'Sem pagar para jogar e sem precisar de conta. Baixe e comece sua coleção.',
+    'band.offline.t': 'Funciona sem internet',
+    'band.offline.d': 'O jogo inteiro roda no seu aparelho: no avião, no metrô, em qualquer lugar.',
+    'features.title': 'Tudo o que um colecionador ama',
+    'features.lead': 'Uma rotina diária de descobertas, progresso e a emoção de tirar uma carta rara.',
+    'feat.packs.t': 'Abra pacotes',
+    'feat.collections.t': 'Complete coleções',
+    'feat.collections.d': 'Preencha coleções temáticas de ambientes do mundo todo. Cada uma que você completa abre a próxima, e novas coleções chegam a cada atualização.',
+    'feat.trade.t': 'Melhore suas repetidas',
+    'feat.trade.d': 'Junte cartas repetidas e converta em cartas mais raras, ou desbloqueie variantes incríveis.',
+    'feat.streaks.t': 'Recompensas diárias e sequências',
+    'feat.foils.t': 'Cartas brilhantes e variantes',
+    'feat.trivia.t': 'Quiz selvagem',
+    'feat.cal.t': 'Calendário real da natureza',
+    'feat.cal.d': 'Um calendário com os dias internacionais reais dedicados à vida selvagem, cada um com bônus especiais para aproveitar.',
+    'feat.quests.t': 'Missões e conquistas',
+    'feat.quests.d': 'Missões diárias e semanais, além de conquistas de longo prazo que dão moedas a cada nível, trazem um objetivo para cada partida.',
+    'feat.iucn.t': 'Dados reais de conservação',
+    'feat.iucn.d': 'Cada espécie traz seu status real na Lista Vermelha da IUCN, que define sua raridade e seu valor no jogo.',
+    'rares.eyebrow': 'A emoção da carta rara',
+    'rares.title': 'Tem carta que você vai caçar por semanas',
+    'rares.lead': 'A maioria das cartas é comum. Aí uma brilhante reflete a luz, e o pacote inteiro vale a pena.',
+    'rares.legendary.t': 'Lendária',
+    'rares.legendary.d': 'O nível mais raro: uma carta que você nunca vai esquecer de ter tirado.',
+    'rares.foil.t': 'Brilhantes Prata · Ouro · Arco-íris',
+    'rares.variant.t': 'Variantes secretas',
+    'rares.variant.d': 'Variantes raras, cada uma com sua própria ilustração.',
+    'rares.status.t': 'Uma raridade que faz sentido',
+    'rares.status.d': 'Quanto mais perto da extinção, mais rara a carta. Status real, escassez real.',
+    'edu.eyebrow': 'Mais que um jogo',
+    'edu.title': 'Um jogo que ensina enquanto você joga',
+    'edu.lead': 'Os álbuns de figurinhas da nossa infância, reinventados e discretamente educativos em qualquer idade.',
+    'edu.all.t': 'Para todas as idades',
+    'edu.all.d': 'Pais, filhos e curiosos. A alegria de infância de completar uma coleção, agora no seu bolso.',
+    'edu.discover.t': 'Conheça o desconhecido',
+    'edu.discover.d': 'Você nunca ouviu falar da maioria destas espécies. Até quem é apaixonado por animais descobre dezenas de novas.',
+    'edu.scale.t': 'Um dos maiores catálogos que existem',
+    'edu.real.t': 'Arte realista, revisada à mão',
+    'edu.real.d': 'Cada imagem é revisada à mão para ser realista, para que cada animal pareça de verdade, nunca um desenho.',
+    'screens.title': 'Veja o jogo em ação',
+    'screens.lead': 'Telas reais, capturadas direto do app.',
+    'g.home': 'Painel do dia',
+    'g.album': 'Seu álbum',
+    'g.pack': 'Abertura de pacote',
+    'g.card': 'Detalhe da carta',
+    'g.collections': 'Coleções',
+    'g.profile': 'Seu perfil',
+    'cons.eyebrow': 'Baseado em dados reais de conservação',
+    'cons.title': 'Cada status conta uma história real',
+    'cons.p1': 'Aqui a raridade não é inventada. Cada espécie traz seu status real na <strong>Lista Vermelha da IUCN</strong>, de Menos preocupante a Criticamente em perigo, Extinta na natureza e Extinta. É esse status que define o quão rara é cada carta.',
+    'cons.p2': 'E cada nível importa. As espécies classificadas como “Menos preocupante” estão bem, mas seguem monitoradas; as “Quase ameaçadas” e “Vulneráveis” vão perdendo espaço em silêncio; e muitas já estão Em perigo ou desapareceram para sempre, quase sempre por nossa causa. O jogo reúne até espécies que hoje só sobrevivem em cativeiro, ou que o planeta perdeu por completo.',
+    'cons.p3': 'É uma pequena forma de iluminar um mundo natural que precisa disso, dando um rosto a espécies que você talvez nunca chegasse a conhecer.',
+    'cons.lc': 'Menos preocupante',
+    'cons.nt': 'Quase ameaçada',
+    'cons.vu': 'Vulnerável',
+    'cons.en': 'Em perigo',
+    'cons.cr': 'Criticamente em perigo',
+    'cons.ex': 'Extinta / Extinta na natureza',
+    'social.eyebrow': 'Avaliações reais do Google Play',
+    'social.title': 'Nota 4,9★ no Google Play',
+    'social.lead': 'O que os jogadores dizem, direto da página da loja:',
+    'social.r1.q': '“Eu amo este app! … Dá para jogar sem internet e ganhar um pacote grátis de 12 cartas a cada hora. Nenhuma compra obrigatória! Adoro o sistema de status de conservação, de Menos preocupante a Extinta.”',
+    'social.r1.a': 'rocky085 · Google Play',
+    'social.r2.q': '“Um jogo superdivertido e bem intuitivo. Vicia de verdade: você entra só um pouquinho e acaba jogando um tempão.”',
+    'social.r2.a': 'Carla B. · Google Play',
+    'social.r3.q': '“Um jogo muito divertido com o qual se aprende muito: todo dia você descobre animais fascinantes do mundo inteiro. Recomendo 200%!”',
+    'social.r3.a': 'Nuria L. · Google Play',
+    'social.note': 'Avaliações da página do Google Play; algumas traduzidas ou resumidas.',
+    'final.title': 'Comece sua coleção',
+    'final.sub': 'Espécies do mundo todo esperam por você: grátis, sem internet, no Android.',
+    'foot.tag': 'Um estúdio indie de jogos. Mundos para colecionar.',
+    'foot.tagGame': 'Wildlife Collection é um jogo da Maraverse Games.',
+    'foot.privacy': 'Privacidade (em inglês)',
+    'foot.contact': 'Contato',
+    // Página do estúdio
+    'nav.studio': '← Maraverse Games',
+    'studio.meta': 'Maraverse Games é um estúdio indie que cria jogos de coleção e aventura em mundos reais e imaginários, começando por Wildlife Collection.',
+    'studio.nav.games': 'Jogos',
+    'studio.nav.worlds': 'Mundos',
+    'studio.nav.about': 'Estúdio',
+    'studio.eyebrow': 'Estúdio indie de jogos',
+    'studio.title': 'Mundos para<br>colecionar.',
+    'studio.sub': 'Somos a <strong>Maraverse Games</strong>, um estúdio indie de uma pessoa só que cria jogos de coleção sobre mundos, reais e imaginários, que valem a pena conhecer. O primeiro já chegou: <strong>Wildlife Collection</strong>.',
+    'studio.cta.small': 'NOSSO PRIMEIRO JOGO',
+    'studio.games.title': 'Nossos jogos',
+    'studio.games.lead': 'Nosso primeiro jogo está quase aí, e outros já estão tomando forma.',
+    'studio.status.live': 'No Google Play · Android',
+    'studio.status.dev': 'Em desenvolvimento',
+    'studio.game.wildlife': 'Descubra espécies animais reais, abra pacotes e complete coleções, tudo baseado nos dados reais de conservação da Lista Vermelha da IUCN.',
+    'studio.game.view': 'Ver o jogo →',
+    'studio.status.coming': 'Em breve',
+    'studio.soon.tile1': 'Quando os gigantes dominavam a Terra',
+    'studio.soon.tile2': 'Além das estrelas',
+    'studio.soon.tile3': 'Um reino de lenda',
+    'studio.soon.note': 'Mais três mundos já estão tomando forma. Os nomes ainda são segredo: em breve.',
+    'worlds.eyebrow': 'Um estúdio, quatro universos',
+    'worlds.title': 'O Maraverso',
+    'worlds.lead': 'Cada jogo da Maraverse é um mundo para colecionar, todos unidos pelo mesmo cuidado e pelo mesmo capricho.',
+    'worlds.nature.t': 'Natureza',
+    'worlds.nature.d': 'Espécies reais, já disponível.',
+    'worlds.prehistory.t': 'Pré-história',
+    'worlds.prehistory.d': 'Quando os gigantes dominavam a Terra.',
+    'worlds.space.t': 'Espaço',
+    'worlds.space.d': 'Além das estrelas.',
+    'worlds.fantasy.t': 'Fantasia',
+    'worlds.fantasy.d': 'Um reino de lenda.',
+    'studio.story.eyebrow': 'Nossa história',
+    'studio.story.title': 'De onde vem a Maraverse Games',
+    'studio.story.p1': 'Os jogos vieram primeiro. Comecei a programar aos 15 anos justamente para criá-los, joguinhos em preto e branco escritos em C, e até meu trabalho de conclusão do curso de engenharia foi minha própria versão de um jogo que eu adorava. Minha carreira seguiu outro caminho, mas criar jogos continuou sendo aquilo a que eu sempre voltava.',
+    'studio.story.p2': 'Durante anos, isso só podia ser um hobby. Algo como Wildlife Collection, com <strong>um catálogo inteiro de ilustrações realistas de animais, revisadas à mão</strong>, era impossível de desenhar ou bancar para uma pessoa só. Aí a IA mudou a conta, e desde o fim de 2023 eu finalmente construo sozinho os mundos que antes só imaginava.',
+    'studio.story.p3': 'E são mundos que eu amo. Sou fascinado por ciência e natureza (biologia, astronomia, paleontologia) e fotografo aves no meu tempo livre. Estes jogos juntam essas paixões. O primeiro tomou forma do outro lado do planeta, durante três meses morando na Ásia na nossa lua de mel.',
+    'studio.story.mara': 'Um último pedacinho de casa: em janeiro de 2020 adotamos a <strong>Mara</strong>, nossa cachorra, de um abrigo local. Ela chegou num estado de partir o coração e logo virou família. O estúdio leva o nome dela, e você vai encontrá-la em tudo o que fazemos. 🐾',
+    'studio.story.sign': '— Adrián, fundador da Maraverse Games',
+    'studio.value.real.t': 'Raízes na realidade',
+    'studio.value.real.d': 'Espécies reais, ciência real, encanto real.',
+    'studio.value.craft.t': 'Feito com capricho',
+    'studio.value.craft.d': 'Cada imagem revisada à mão para ser realista.',
+    'studio.value.fair.t': 'O jogador em primeiro lugar',
+    'studio.value.fair.d': 'Jogos grátis e tranquilos, sem armadilhas de design.',
+    'studio.value.lang.t': 'Feito para viajar',
+    'studio.final.title': 'Comece pela natureza',
+    'studio.final.sub': 'Nosso primeiro jogo está quase aí. Dê uma olhada enquanto os próximos mundos tomam forma.',
+    // 404
+    'err.title': 'Esta trilha não leva a lugar nenhum',
+    'err.sub': 'A página que você procura se perdeu na natureza.',
+    'err.back': 'VOLTAR PARA',
+  },
 };
 
+/* ---------------- Languages ----------------
+   Dictionary key -> <html lang> / hreflang and og:locale. Each language has its
+   own URL for search engines: English is the bare URL, the others ?lang=xx
+   (the hreflang links in each page's <head> list them). */
+const LANGS = ['en', 'es', 'fr', 'pt'];
+const HTML_LANG = { en: 'en', es: 'es', fr: 'fr', pt: 'pt-BR' };
+const OG_LOCALE = { en: 'en_US', es: 'es_ES', fr: 'fr_FR', pt: 'pt_BR' };
+// Languages that have their own screenshots in assets/screens; the others show
+// the English captures. TODO(facts): add fr / pt with the new captures.
+const SHOT_LANGS = ['en', 'es'];
+
+// 'pt-BR', 'fr-CA', 'ES' ... -> a dictionary key, or null.
+function normLang(code) {
+  const base = String(code || '').toLowerCase().split(/[-_]/)[0];
+  return LANGS.includes(base) ? base : null;
+}
+
+// ?lang= in the URL, then the visitor's last choice, then the browser languages.
+function pickLang() {
+  try {
+    const fromUrl = normLang(new URLSearchParams(location.search).get('lang'));
+    if (fromUrl) return fromUrl;
+  } catch (_) {}
+  try {
+    const saved = normLang(localStorage.getItem('wc_lang'));
+    if (saved) return saved;
+  } catch (_) {}
+  const prefs = (navigator.languages && navigator.languages.length)
+    ? navigator.languages : [navigator.language];
+  for (const p of prefs) {
+    const l = normLang(p);
+    if (l) return l;
+  }
+  return 'en';
+}
+
 /* ---------------- Apply language ---------------- */
-function applyLang(lang) {
-  const dict = I18N[lang] || I18N.en;
-  document.documentElement.lang = lang;
+function applyLang(lang, { updateUrl = false } = {}) {
+  if (!I18N[lang]) lang = 'en';
+  const dict = I18N[lang];
+  document.documentElement.lang = HTML_LANG[lang];
   document.documentElement.dataset.lang = lang;
 
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const key = el.dataset.i18n;
-    if (!(key in dict)) return;
-    if (el.tagName === 'META') el.setAttribute('content', dict[key]);
-    else el.innerHTML = dict[key];
+    // Keys not translated yet (see TODO(facts) above) fall back to English,
+    // so switching languages never leaves the previous language's text behind.
+    const text = key in dict ? dict[key] : I18N.en[key];
+    if (text === undefined) return;
+    if (el.tagName === 'META') el.setAttribute('content', text);
+    else if (el.tagName === 'TITLE') document.title = text;
+    else el.innerHTML = text;
   });
 
+  const ogLocale = document.querySelector('meta[property="og:locale"]');
+  if (ogLocale) ogLocale.setAttribute('content', OG_LOCALE[lang]);
+
+  // Canonical follows the language URL, matching the hreflang alternates.
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) {
+    const base = canonical.dataset.base || canonical.getAttribute('href').split('?')[0];
+    canonical.dataset.base = base;
+    canonical.setAttribute('href', lang === 'en' ? base : `${base}?lang=${lang}`);
+  }
+
   // Swap screenshots to the matching language capture
+  const shotLang = SHOT_LANGS.includes(lang) ? lang : 'en';
   document.querySelectorAll('[data-shot]').forEach((img) => {
-    img.src = `assets/screens/${img.dataset.shot}-${lang}.webp`;
+    img.src = `assets/screens/${img.dataset.shot}-${shotLang}.webp`;
   });
 
   // Active state on the toggle
   document.querySelectorAll('[data-set-lang]').forEach((btn) => {
-    btn.classList.toggle('is-active', btn.dataset.setLang === lang);
+    const on = btn.dataset.setLang === lang;
+    btn.classList.toggle('is-active', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
   });
+
+  // After a click on the switcher, keep the address shareable (?lang=xx).
+  if (updateUrl) {
+    try {
+      const url = new URL(location.href);
+      if (lang === 'en') url.searchParams.delete('lang');
+      else url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url);
+    } catch (_) {}
+  }
 
   try { localStorage.setItem('wc_lang', lang); } catch (_) {}
 }
@@ -403,15 +801,10 @@ document.addEventListener('DOMContentLoaded', () => {
   wirePlayCta();
 
   document.querySelectorAll('[data-set-lang]').forEach((btn) => {
-    btn.addEventListener('click', () => applyLang(btn.dataset.setLang));
+    btn.addEventListener('click', () => applyLang(btn.dataset.setLang, { updateUrl: true }));
   });
 
-  let initial = 'en';
-  try {
-    initial = localStorage.getItem('wc_lang')
-      || ((navigator.language || 'en').toLowerCase().startsWith('es') ? 'es' : 'en');
-  } catch (_) {}
-  applyLang(initial);
+  applyLang(pickLang());
 
   const yr = document.getElementById('year');
   if (yr) yr.textContent = new Date().getFullYear();
